@@ -369,7 +369,7 @@ export default function App() {
   const [cat, setCat]               = useState("signatures");
   const [mob, setMob]               = useState(false);
   const [scrolled, setSc]           = useState(false);
-  const [bannerOpen, setBanner]     = useState(true);
+  const [bannerOpen, setBanner]     = useState(false);
   const [fabVisible, setFab]        = useState(false);
   const [modalOpen, setModalOpen]   = useState(false);
   // reservations : { "YYYY-MM-DD__HH:MM": totalPax }
@@ -483,21 +483,7 @@ export default function App() {
         />
       )}
 
-      {/* ── BANDEAU ── */}
-      {bannerOpen && (
-        <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 300, height: BANNER_H, background: B, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 48px" }}>
-          <p style={{ margin: 0, color: CR, fontSize: 13, fontWeight: 500, textAlign: "center", lineHeight: 1.5 }} className="mm-banner-text">
-            <span style={{ fontWeight: 700, marginRight: 6 }} className="mm-banner-bold">🎉 Ouverture officielle le [Date] !</span>
-            Pensez à réserver votre table dès maintenant.
-          </p>
-          <button onClick={() => setBanner(false)} aria-label="Fermer l'annonce"
-            style={{ position: "absolute", right: 16, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "rgba(253,251,247,0.6)", padding: 6, display: "flex", alignItems: "center" }}
-            onMouseEnter={e => e.currentTarget.style.color = CR}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(253,251,247,0.6)"}>
-            <X size={16} />
-          </button>
-        </div>
-      )}
+
 
       {/* ── NAVBAR ── */}
       <header style={{ position: "fixed", top: bannerOpen ? BANNER_H : 0, left: 0, right: 0, zIndex: 200, background: scrolled ? "rgba(253,251,247,0.96)" : CR, backdropFilter: scrolled ? "blur(8px)" : "none", borderBottom: `1px solid ${BORDER}`, transition: "top 0.25s ease, background 0.3s" }}>
@@ -553,10 +539,7 @@ export default function App() {
           </div>
           <div className="hero-photo" style={{ flex: 1, position: "relative", overflow: "hidden" }}>
             <img src={IMG.hero} alt="Salle et table dressée du restaurant Mama Mok, 12 rue de la Psalette, Rennes" className="mm-photo" style={{ objectPosition: "center 30%" }} />
-            <div className="mm-hero-badge" style={{ position: "absolute", bottom: 28, right: 28, background: CR, border: `1px solid ${BORDER}`, padding: "10px 18px", display: "inline-flex", alignItems: "center", gap: 8 }}>
-              <span style={{ fontSize: 14 }}>✨</span>
-              <span style={{ fontSize: 12, fontWeight: 700, color: G, letterSpacing: "0.06em", textTransform: "uppercase" }}>Ouverture Prochaine</span>
-            </div>
+
           </div>
         </div>
       </section>
