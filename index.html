@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo-mamamok.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Titre & Description -->
+    <title>Mama Mok | Restaurant Bistronomique à Rennes Centre</title>
+    <meta name="description" content="Découvrez Mama Mok, restaurant bistronomique au cœur du quartier historique de Rennes (12 Rue de la Psalette). Cuisine de cœur, produits frais et saveurs méditerranéennes." />
+    <meta name="keywords" content="restaurant rennes, bistrot rennes, restaurant bistronomique rennes, mama mok, rue de la psalette, où manger rennes center" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="restaurant" />
+    <meta property="og:title" content="Mama Mok | Restaurant Bistronomique · Rennes" />
+    <meta property="og:description" content="Cuisine de cœur, sans chichis. Réservez votre table au 12 Rue de la Psalette à Rennes." />
+    <meta property="og:image" content="/logo-mamamok.png" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Mama Mok",
+        "image": "https://mamamok.fr/logo-mamamok.png",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "12 Rue de la Psalette",
+          "addressLocality": "Rennes",
+          "postalCode": "35000",
+          "addressCountry": "FR"
+        },
+        "url": "https://mamamok.fr",
+        "servesCuisine": ["Bistronomique", "Méditerranéenne"]
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Le point d'ancrage OBLIGATOIRE de React -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
