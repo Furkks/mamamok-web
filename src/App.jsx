@@ -19,60 +19,60 @@ function Instagram({ size = 24, color = "currentColor" }) {
   );
 }
 
-// ── DESIGN TOKENS — Charte Direction Artistique Mama Mok ──────────────────────
-const G      = "#3A3F2E";   // Dark Olive — base identitaire (60%)
-const G2     = "#6F6F44";   // Olive clair — nuance
-const B      = "#6A1F2B";   // Ancient Burgundy — accent signature (10%)
-const B2     = "#8B2535";   // Bordeaux secondaire
-const CR     = "#D8D2C4";   // Skipping Stone — minéral chaud (30%)
-const CR2    = "#EDE8DB";   // Crème légère (fonds de section)
-const ST     = "#1C2016";   // Texte sombre profond
-const MU     = "#7A7565";   // Muted — textes secondaires
-const BORDER = "#C8C2B0";   // Bordure fine minérale
+// ── DESIGN TOKENS — Charte Officielle V2 Mama Mok ───────────────────────────
+const G      = "#181e14";   // Vert de Rangoon — base identitaire (dominant)
+const G2     = "#2e3d22";   // Vert Tropical — secondaire
+const B      = "#811332";   // Lie de Vin — accent signature
+const B2     = "#9b163a";   // Bordeaux — accent secondaire
+const CR     = "#f0ead8";   // Crème — fond et textes sur sombre
+const CR2    = "#f5f0e4";   // Crème légère — fonds de section
+const ST     = "#181e14";   // Texte sombre = Vert de Rangoon
+const MU     = "#6b6a5e";   // Muted — textes secondaires
+const BORDER = "#d4cfc0";   // Bordure fine minérale
 
 // ── THÈMES MIDI / SOIR ────────────────────────────────────────────────────────
 const THEMES = {
   midi: {
-    pageBg:     CR2,
-    navBg:      "rgba(237,232,219,0.97)",
-    navBorder:  BORDER,
-    navLink:    MU,
-    navLinkHov: G,
-    menuBg:     CR2,
-    menuTitle:  G,
-    menuText:   ST,
-    menuMuted:  MU,
-    menuBorder: BORDER,
-    menuPrice:  B,
-    menuNote:   G,
-    menuNoteBg: "rgba(58,63,46,0.08)",
-    menuNoteBd: "rgba(58,63,46,0.2)",
-    btnBg:      G,
-    toggleAct:  G,
-    divider:    "rgba(58,63,46,0.12)",
-    calloutBg:  "rgba(58,63,46,0.05)",
-    calloutBd:  "rgba(58,63,46,0.13)",
+    pageBg:     "#f5f0e4",
+    navBg:      "rgba(245,240,228,0.97)",
+    navBorder:  "#d4cfc0",
+    navLink:    "#6b6a5e",
+    navLinkHov: "#181e14",
+    menuBg:     "#f5f0e4",
+    menuTitle:  "#181e14",
+    menuText:   "#181e14",
+    menuMuted:  "#6b6a5e",
+    menuBorder: "#d4cfc0",
+    menuPrice:  "#811332",
+    menuNote:   "#181e14",
+    menuNoteBg: "rgba(24,30,20,0.07)",
+    menuNoteBd: "rgba(24,30,20,0.18)",
+    btnBg:      "#181e14",
+    toggleAct:  "#181e14",
+    divider:    "rgba(24,30,20,0.1)",
+    calloutBg:  "rgba(24,30,20,0.04)",
+    calloutBd:  "rgba(24,30,20,0.12)",
   },
   soir: {
-    pageBg:     "#0f1409",
-    navBg:      "rgba(12,17,6,0.97)",
-    navBorder:  "rgba(216,210,196,0.08)",
-    navLink:    "rgba(216,210,196,0.45)",
-    navLinkHov: CR,
-    menuBg:     "#0f1409",
-    menuTitle:  CR,
-    menuText:   "#ddd7c8",
-    menuMuted:  "rgba(216,210,196,0.5)",
-    menuBorder: "rgba(216,210,196,0.1)",
-    menuPrice:  "#b5606e",
-    menuNote:   "#b5606e",
-    menuNoteBg: "rgba(106,31,43,0.15)",
-    menuNoteBd: "rgba(106,31,43,0.3)",
-    btnBg:      B,
-    toggleAct:  "#0f1409",
-    divider:    "rgba(216,210,196,0.1)",
-    calloutBg:  "rgba(216,210,196,0.04)",
-    calloutBd:  "rgba(216,210,196,0.08)",
+    pageBg:     "#181e14",
+    navBg:      "rgba(24,30,20,0.97)",
+    navBorder:  "rgba(240,234,216,0.1)",
+    navLink:    "rgba(240,234,216,0.55)",
+    navLinkHov: "#f0ead8",
+    menuBg:     "#181e14",
+    menuTitle:  "#f0ead8",
+    menuText:   "#e8e2d0",
+    menuMuted:  "rgba(240,234,216,0.55)",
+    menuBorder: "rgba(240,234,216,0.12)",
+    menuPrice:  "#c8a882",
+    menuNote:   "#c8a882",
+    menuNoteBg: "rgba(200,168,130,0.12)",
+    menuNoteBd: "rgba(200,168,130,0.25)",
+    btnBg:      "#811332",
+    toggleAct:  "#0d1109",
+    divider:    "rgba(240,234,216,0.12)",
+    calloutBg:  "rgba(240,234,216,0.05)",
+    calloutBd:  "rgba(240,234,216,0.1)",
   },
 };
 
@@ -96,7 +96,7 @@ const CAROUSEL_SLIDES = [
 ];
 
 // ── DONNÉES MENU ──────────────────────────────────────────────────────────────
-const MENU_PDF_URL_DEFAULT = { midi: null, soir: null };
+const MENU_IMG_URL_DEFAULT = { midi: null, soir: null };
 const MENU_DATA = {
   midi: {
     entrees: [
@@ -445,7 +445,7 @@ export default function App() {
   const [service, setService] = useState("midi");
   const [fabVisible, setFab]  = useState(false);
   const [reservations, setRes]= useState({});
-  const [menuPdfUrl, setPdfUrl] = useState(MENU_PDF_URL_DEFAULT);
+  const [menuImgUrl, setImgUrl] = useState(MENU_IMG_URL_DEFAULT);
 
   const T = THEMES[service];
 
@@ -467,19 +467,35 @@ export default function App() {
   useEffect(() => { document.body.style.overflow = modalOpen ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [modalOpen]);
 
   useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = "https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;600;700&display=swap";
-    document.head.appendChild(link);
+    const style = document.createElement("style");
+    style.textContent = `
+      @font-face {
+        font-family: 'Kumbh Sans';
+        src: url('/fonts/kumbh-sans-Regular.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      @font-face {
+        font-family: 'Kumbh Sans';
+        src: url('/fonts/kumbh-sans-Bold.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+    `;
+    document.head.appendChild(style);
   }, []);
 
-  // Charge les URLs des PDFs depuis Supabase
+  // Charge les URLs depuis Supabase (colonne pdf_url = image ou PDF Canva)
   useEffect(() => {
     supabase.from("carte_urls").select("*").then(({ data }) => {
       if (data) {
-        const urls = { midi: null, soir: null };
-        data.forEach(row => { urls[row.service] = row.pdf_url; });
-        setPdfUrl(urls);
+        const imgs = { midi: null, soir: null };
+        data.forEach(row => {
+          if (row.pdf_url) imgs[row.service] = row.pdf_url;
+        });
+        setImgUrl(imgs);
       }
     });
   }, []);
@@ -508,7 +524,10 @@ export default function App() {
     <div style={{ fontFamily: "'Kumbh Sans', sans-serif", background: T.pageBg, color: T.menuText, minHeight: "100vh", transition: "background 0.45s ease, color 0.45s ease" }}>
 
       <style>{`
-        * { box-sizing: border-box; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { width: 100%; overflow-x: hidden; }
+        body { width: 100%; margin: 0; padding: 0; overflow-x: hidden; background: ${T.pageBg}; transition: background 0.45s ease; }
+        #root { width: 100%; overflow-x: hidden; }
         @keyframes fadeUp { from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none} }
         @keyframes fabIn  { from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none} }
         .mm-fadein { animation: fadeUp .5s ease both; }
@@ -671,8 +690,9 @@ export default function App() {
       </section>
 
       {/* ════════════ MENU ════════════ */}
-      <section ref={menuRef} className="sp" style={{ padding: "80px 28px", background: T.menuBg, transition: "background 0.45s ease" }}>
-        <div style={{ maxWidth: 1160, margin: "0 auto" }}>
+      <section ref={menuRef} style={{ background: T.menuBg, transition: "background 0.45s ease" }}>
+        {/* Header centré */}
+        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "80px 28px 0" }}>
           <div style={{ marginBottom: 40 }}>
             <p style={{ color: B, fontSize: 9, letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700, margin: "0 0 10px" }}>Cuisine & Saison</p>
             <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
@@ -694,26 +714,35 @@ export default function App() {
               </button>
             ))}
           </div>
+        </div>
 
-          {menuPdfUrl[service] ? (
-            <div>
-              {/* Iframe desktop — affichage direct */}
-              <div className="pdf-embed" style={{ width: "100%", borderRadius: 4, overflow: "hidden", border: `1px solid ${T.menuBorder}`, background: "#fff" }}>
-                <iframe
-                  src={`${menuPdfUrl[service]}#toolbar=0&navpanes=0&scrollbar=0`}
-                  style={{ width: "100%", height: 680, border: "none", display: "block" }}
-                  title={`Carte ${service}`}
-                />
-              </div>
-              {/* Lien plein écran */}
-              <div style={{ textAlign: "center", marginTop: 14 }}>
-                <a href={menuPdfUrl[service]} target="_blank" rel="noopener noreferrer"
-                  style={{ color: T.menuMuted, fontSize: 12, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", borderBottom: `1px solid ${T.menuBorder}`, paddingBottom: 2 }}>
-                  Ouvrir en plein écran <ArrowRight size={12} />
-                </a>
-              </div>
+        {/* Contenu carte */}
+        {menuImgUrl[service] ? (
+          <div>
+            {/* Image de la carte — propre, intégrée, sans lecteur externe */}
+            <div style={{ maxWidth: 820, margin: "0 auto", padding: "0 0 20px" }}>
+              <img
+                src={menuImgUrl[service]}
+                alt={`Carte ${service} Mama Mok`}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  display: "block",
+                  borderRadius: 4,
+                  boxShadow: "0 4px 32px rgba(0,0,0,0.12)",
+                }}
+              />
             </div>
-          ) : (
+            {/* Lien téléchargement PDF discret */}
+            <div style={{ textAlign: "center", padding: "8px 0 48px" }}>
+              <a href={menuImgUrl[service]} target="_blank" rel="noopener noreferrer"
+                style={{ color: T.menuMuted, fontSize: 11, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", borderBottom: `1px solid ${T.menuBorder}`, paddingBottom: 2, transition: "color 0.2s" }}>
+                Ouvrir en plein écran <ArrowRight size={11} />
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 28px 80px" }}>
             <div className="menu-cols" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 56px" }}>
               <div>
                 <MenuCategory title="Entrées"  items={currentMenu.entrees}  theme={T} />
@@ -721,12 +750,15 @@ export default function App() {
               </div>
               <div>
                 <MenuCategory title="Desserts" items={currentMenu.desserts} theme={T} />
-                {currentMenu.elixirs   && <MenuCategory title="Élixirs & Cocktails" items={currentMenu.elixirs}   theme={T} />}
+                {currentMenu.elixirs && <MenuCategory title="Élixirs & Cocktails" items={currentMenu.elixirs} theme={T} />}
               </div>
             </div>
-          )}
+          </div>
+        )}
 
-          <div style={{ marginTop: 40, padding: "20px 24px", background: T.calloutBg, border: `1px solid ${T.calloutBd}`, borderRadius: 2, display: "flex", flexWrap: "wrap", gap: 16, alignItems: "center", justifyContent: "space-between", transition: "background 0.45s ease, border-color 0.45s ease" }}>
+        {/* Callout vins — toujours centré */}
+        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 28px 80px" }}>
+          <div style={{ padding: "20px 24px", background: T.calloutBg, border: `1px solid ${T.calloutBd}`, borderRadius: 2, display: "flex", flexWrap: "wrap", gap: 16, alignItems: "center", justifyContent: "space-between", transition: "background 0.45s ease, border-color 0.45s ease" }}>
             <div>
               <p style={{ margin: "0 0 2px", fontWeight: 700, color: T.menuTitle, fontSize: 13, transition: "color 0.45s ease" }}>Carte des vins & élixirs</p>
               <p style={{ margin: 0, color: T.menuMuted, fontSize: 12, transition: "color 0.45s ease" }}>Disponible à table ou sur demande.</p>
