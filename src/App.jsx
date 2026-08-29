@@ -530,6 +530,7 @@ export default function App() {
           .info-cols  { grid-template-columns: 1fr !important; gap: 32px !important; }
           .portrait   { height: 260px !important; }
           .sp         { padding: 56px 20px !important; }
+          .pdf-embed  { display: none !important; }
         }
         @media (min-width: 801px) {
           #mob-btn  { display: none !important; }
@@ -695,12 +696,22 @@ export default function App() {
           </div>
 
           {menuPdfUrl[service] ? (
-            <div style={{ textAlign: "center" }}>
-              <p style={{ color: T.menuMuted, fontSize: 14, marginBottom: 20 }}>Consultez notre carte complète :</p>
-              <a href={menuPdfUrl[service]} target="_blank" rel="noopener noreferrer"
-                style={{ ...btnPrimary(), textDecoration: "none", display: "inline-flex" }}>
-                Voir la carte {service} (PDF) <ArrowRight size={13} />
-              </a>
+            <div>
+              {/* Iframe desktop — affichage direct */}
+              <div className="pdf-embed" style={{ width: "100%", borderRadius: 4, overflow: "hidden", border: `1px solid ${T.menuBorder}`, background: "#fff" }}>
+                <iframe
+                  src={`${menuPdfUrl[service]}#toolbar=0&navpanes=0&scrollbar=0`}
+                  style={{ width: "100%", height: 680, border: "none", display: "block" }}
+                  title={`Carte ${service}`}
+                />
+              </div>
+              {/* Lien plein écran */}
+              <div style={{ textAlign: "center", marginTop: 14 }}>
+                <a href={menuPdfUrl[service]} target="_blank" rel="noopener noreferrer"
+                  style={{ color: T.menuMuted, fontSize: 12, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 600, letterSpacing: "0.07em", textTransform: "uppercase", borderBottom: `1px solid ${T.menuBorder}`, paddingBottom: 2 }}>
+                  Ouvrir en plein écran <ArrowRight size={12} />
+                </a>
+              </div>
             </div>
           ) : (
             <div className="menu-cols" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 56px" }}>
