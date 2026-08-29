@@ -889,7 +889,9 @@ export default function App() {
             </a>
           </div>
           <span style={{ color: "rgba(216,210,196,0.22)", fontSize: 11 }}>© {new Date().getFullYear()} Mama Mok · Tous droits réservés</span>
-          <a href="/admin" style={{ color: "rgba(216,210,196,0.12)", fontSize: 10, textDecoration: "none", letterSpacing: "0.05em" }}>·</a>
+          <a href="/admin" style={{ color: "rgba(216,210,196,0.25)", fontSize: 10, textDecoration: "none", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, border: "1px solid rgba(216,210,196,0.15)", borderRadius: 2, padding: "5px 10px" }}>
+            Admin
+          </a>
         </div>
       </footer>
 
