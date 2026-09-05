@@ -490,7 +490,7 @@ export default function App() {
             <div className="mm-fadein" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <span style={{ color: isNight ? "#c8a882" : B, fontSize: 9, letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700, transition: "color 0.45s ease" }}>Restaurant Bistronomique · Rennes</span>
               <h1 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(38px, 5vw, 62px)", fontWeight: 700, color: T.text, lineHeight: 1.07, margin: 0, letterSpacing: "-0.02em", transition: "color 0.45s ease" }}>
-                LA goût,<br />
+                Le goût,<br />
                 <em style={{ color: isNight ? "#c8a882" : B, fontStyle: "italic", fontWeight: 400, transition: "color 0.45s ease" }}>dans sa</em><br />
                 globalité.
               </h1>
