@@ -78,7 +78,7 @@ const CAROUSEL_SLIDES = [
   { img: IMG.drinks, label: "Élixirs & cocktails" },
   { img: IMG.food,   label: "Geste signature" },
   { img: IMG.drinks, label: "Carte des vins" },
-  { img: "/plat-elixir.png", label: "Geste signature" }
+  { img: "/plat-elixir.png", label: "ok signature" }
 ];
 
 const MENU_IMG_URL_DEFAULT = { midi: null, soir: null };
