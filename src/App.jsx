@@ -82,46 +82,6 @@ const CAROUSEL_SLIDES = [
 ];
 
 const MENU_IMG_URL_DEFAULT = { midi: null, soir: null };
-const MENU_DATA = {
-  midi: {
-    entrees:  [
-      { name: "Velouté du jour",       price: "8 €",  note: "Selon arrivage" },
-      { name: "Tartare de légumes",    price: "10 €", note: "Végétarien" },
-      { name: "Gravlax de saumon",     price: "12 €", note: "Signature" },
-    ],
-    plats:    [
-      { name: "Le Mama Bowl",          price: "16 €", note: "Végétarien" },
-      { name: "Agneau confit 8h",      price: "20 €", note: "Signature" },
-      { name: "Poisson du marché",     price: "18 €", note: "Selon arrivage" },
-    ],
-    desserts: [
-      { name: "Baklava maison",        price: "7 €",  note: "Signature" },
-      { name: "Fruits de saison",      price: "6 €",  note: null },
-    ],
-  },
-  soir: {
-    entrees:  [
-      { name: "Planche charcuterie & fromage", price: "14 €", note: "À partager" },
-      { name: "Houmous & pita chaud",          price: "9 €",  note: "Végétarien" },
-      { name: "Tartare de bœuf couteau",       price: "14 €", note: "Signature" },
-    ],
-    plats:    [
-      { name: "Agneau confit aux épices",   price: "24 €", note: "Signature" },
-      { name: "Saint-Jacques snackées",     price: "26 €", note: "Signature" },
-      { name: "Risotto champignons-truffe", price: "20 €", note: "Végétarien" },
-    ],
-    desserts: [
-      { name: "Mousse chocolat tahini",     price: "8 €", note: null },
-      { name: "Baklava fleur d'oranger",    price: "7 €", note: null },
-    ],
-    elixirs:  [
-      { name: "L'Élixir Vert",              price: "12 €", note: "Signature" },
-      { name: "Lie de Lune",                price: "11 €", note: null },
-      { name: "Jardin d'Orient",            price: "11 €", note: null },
-      { name: "Le Nectar — sans alcool",    price: "8 €",  note: null },
-    ],
-  },
-};
 
 const HOURS = [
   { service: "Déjeuner", days: "Mar – Sam", time: "12h00 – 14h00" },
@@ -166,31 +126,6 @@ function DroppingElixir({ size = 80, color = CR }) {
       <ellipse className="drop-let" cx="30" cy="60" rx="2.5" ry="3.5" fill={color} fillOpacity="0.7" style={{ transformOrigin: "30px 60px" }} />
       <ellipse className="ripple" cx="30" cy="73" rx="2" ry="1.2" stroke={color} strokeWidth="1" fill="none" strokeOpacity="0.5" />
     </svg>
-  );
-}
-
-function DishRow({ item, T }) {
-  return (
-    <div style={{ display: "flex", alignItems: "baseline", padding: "10px 0", borderBottom: `1px solid ${T.border}`, transition: "border-color 0.45s" }}>
-      <span style={{ fontSize: 15, fontWeight: 600, color: T.text, flexShrink: 0, transition: "color 0.45s" }}>{item.name}</span>
-      {item.note && (
-        <span style={{ display: "inline-block", padding: "1px 6px", borderRadius: 2, fontSize: 9, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", background: T.noteBg, color: T.noteText, border: `1px solid ${T.noteBd}`, marginLeft: 8, flexShrink: 0, transition: "all 0.45s" }}>
-          {item.note}
-        </span>
-      )}
-      <span style={{ flex: 1, margin: "0 10px 4px", borderBottom: `1px dotted ${T.border}`, transition: "border-color 0.45s" }} />
-      <span style={{ fontFamily: "Georgia, serif", fontSize: 15, fontWeight: 700, color: T.price, flexShrink: 0, transition: "color 0.45s" }}>{item.price}</span>
-    </div>
-  );
-}
-
-function MenuCategory({ title, items, T }) {
-  if (!items?.length) return null;
-  return (
-    <div style={{ marginBottom: 28 }}>
-      <p style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: T.textMuted, margin: "0 0 6px", transition: "color 0.45s" }}>{title}</p>
-      {items.map(item => <DishRow key={item.name} item={item} T={T} />)}
-    </div>
   );
 }
 
@@ -416,8 +351,6 @@ export default function App() {
     fontFamily: "inherit", transition: "background 0.3s", ...extra,
   });
 
-  const currentMenu = MENU_DATA[service];
-
   return (
     <div style={{ fontFamily: "'Kumbh Sans', sans-serif", background: T.bg, color: T.text, minHeight: "100vh", transition: "background 0.45s ease, color 0.45s ease" }}>
 
@@ -593,17 +526,11 @@ export default function App() {
             </div>
           </div>
         ) : (
-          <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 28px 80px" }}>
-            <div className="menu-cols" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 56px" }}>
-              <div>
-                <MenuCategory title="Entrées"  items={currentMenu.entrees}  T={T} />
-                <MenuCategory title="Plats"    items={currentMenu.plats}    T={T} />
-              </div>
-              <div>
-                <MenuCategory title="Desserts" items={currentMenu.desserts} T={T} />
-                {currentMenu.elixirs && <MenuCategory title="Élixirs & Cocktails" items={currentMenu.elixirs} T={T} />}
-              </div>
-            </div>
+          <div style={{ maxWidth: 860, margin: "0 auto", padding: "0 28px 80px", textAlign: "center" }}>
+            <p style={{ color: T.textMuted, fontSize: 14, lineHeight: 1.7 }}>
+              La carte sera disponible très prochainement.<br />
+              Contactez-nous au <a href="tel:+33223203564" style={{ color: T.text, fontWeight: 700 }}>02 23 20 35 64</a> pour toute question.
+            </p>
           </div>
         )}
 
