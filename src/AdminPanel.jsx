@@ -84,10 +84,18 @@ export default function AdminPanel() {
     const { data: urlData } = supabase.storage.from("cartes").getPublicUrl(fileName);
     const publicUrl = `${urlData.publicUrl}?t=${Date.now()}`;
 
-    // Upsert natif Supabase — crée ou met à jour selon le service
-    await supabase
+    // Met à jour directement — les lignes midi/soir existent toujours
+    const { error: dbError } = await supabase
       .from("carte_urls")
-      .upsert({ service, pdf_url: publicUrl }, { onConflict: "service" });
+      .update({ pdf_url: publicUrl })
+      .eq("service", service);
+
+    if (dbError) {
+      console.error("DB error:", dbError);
+      setFeedback(f => ({ ...f, [service]: "err" }));
+      setUploading(u => ({ ...u, [service]: false }));
+      return;
+    }
 
     setCarteUrls(u => ({ ...u, [service]: publicUrl }));
     setFeedback(f => ({ ...f, [service]: "ok" }));
