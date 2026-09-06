@@ -323,14 +323,24 @@ export default function App() {
     document.head.appendChild(s);
   }, []);
 
+  // Charge les URLs directement depuis Storage — pas de table DB
   useEffect(() => {
-    supabase.from("carte_urls").select("*").then(({ data }) => {
-      if (data) {
-        const imgs = { midi: null, soir: null };
-        data.forEach(row => { if (row.pdf_url) imgs[row.service] = row.pdf_url; });
-        setImgUrl(imgs);
+    const SUPA_URL = "https://xscdqxfvrmjlxeilrxnb.supabase.co";
+    const NAMES = { midi: "carte-midi-current", soir: "carte-soir-current" };
+    const loadUrls = async () => {
+      const imgs = { midi: null, soir: null };
+      for (const service of ["midi", "soir"]) {
+        for (const ext of ["pdf", "jpg", "png"]) {
+          const url = `${SUPA_URL}/storage/v1/object/public/cartes/${NAMES[service]}.${ext}`;
+          try {
+            const res = await fetch(url, { method: "HEAD" });
+            if (res.ok) { imgs[service] = `${url}?t=${Date.now()}`; break; }
+          } catch {}
+        }
       }
-    });
+      setImgUrl(imgs);
+    };
+    loadUrls();
   }, []);
 
   const go = (ref) => { setMob(false); setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80); };
