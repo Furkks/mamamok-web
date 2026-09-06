@@ -74,11 +74,11 @@ const IMG = {
 };
 
 const CAROUSEL_SLIDES = [
+  { img: IMG.food,          label: "Cuisine de saison" },
   { img: "/plat-elexir.png", label: "L'Élixir en action" },
-  { img: "/salle.png", label: "L'ambiance" },
-  { img: "/cok.png", label: "L'ambiance" },
+  { img: IMG.drinks,        label: "Élixirs & cocktails" },
+  { img: IMG.food,          label: "Geste signature" },
   { img: IMG.drinks,        label: "Carte des vins" },
-  { img: "/cuisineM.png", label: "L'Élixir en action" }
 ];
 
 const MENU_IMG_URL_DEFAULT = { midi: null, soir: null };
@@ -718,23 +718,15 @@ export default function App() {
             <p style={{ color: MU, fontSize: 13, margin: "0 0 24px" }}>Tout ce qu'il faut savoir avant de venir.</p>
             <div style={{ maxWidth: 660 }}>{FAQ.map(item => <FaqItem key={item.q} item={item} />)}</div>
           </div>
-          <div style={{ borderRadius: 2, overflow: "hidden", border: `1px solid ${BORDER}`, background: CR, position: "relative", height: 230, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0.15 }}>
-              <defs><pattern id="mg" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M 48 0 L 0 0 0 48" fill="none" stroke={G} strokeWidth="0.5" /></pattern></defs>
-              <rect width="100%" height="100%" fill="url(#mg)" />
-              <line x1="0" y1="44%" x2="100%" y2="44%" stroke={G} strokeWidth="2" opacity="0.3" />
-              <line x1="31%" y1="0" x2="31%" y2="100%" stroke={G} strokeWidth="1.5" opacity="0.22" />
-            </svg>
-            <div style={{ position: "relative", textAlign: "center", background: CR2, border: `1px solid ${BORDER}`, padding: "16px 22px", borderRadius: 2 }}>
-              <div style={{ width: 36, height: 36, borderRadius: "50%", background: G, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 10px" }}>
-                <MapPin size={17} color={CR2} fill={CR2} />
-              </div>
-              <p style={{ fontFamily: "Georgia, serif", fontWeight: 700, color: G, fontSize: 14, margin: "0 0 2px" }}>Mama Mok</p>
-              <p style={{ color: MU, fontSize: 11, margin: "0 0 12px" }}>36 Rue Saint-Georges · Rennes</p>
-              <a href="https://maps.google.com/?q=36+rue+Saint-Georges+Rennes" target="_blank" rel="noopener noreferrer" style={{ background: G, color: CR2, border: "none", borderRadius: 2, padding: "8px 18px", fontWeight: 700, fontSize: 10, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "0.09em", textTransform: "uppercase" }}>
-                Itinéraire Google Maps
-              </a>
-            </div>
+          <div style={{ borderRadius: 2, overflow: "hidden", border: `1px solid ${BORDER}`, height: 350 }}>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2663.9193143973207!2d-1.6781965235783605!3d48.11179217124069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480edf46702b9e63%3A0x36a2add86651def4!2sMamamok!5e0!3m2!1sfr!2sfr!4v1788726641212!5m2!1sfr!2sfr"
+              width="100%" height="100%"
+              style={{ border: 0, display: "block" }}
+              allowFullScreen loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              title="Localisation Mama Mok Rennes"
+            />
           </div>
         </div>
       </section>
