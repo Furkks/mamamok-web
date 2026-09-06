@@ -74,11 +74,11 @@ const IMG = {
 };
 
 const CAROUSEL_SLIDES = [
-  { img: IMG.food,   label: "Cuisine de saison" },
-  { img: IMG.drinks, label: "Élixirs & cocktails" },
-  { img: IMG.food,   label: "Geste signature" },
-  { img: IMG.drinks, label: "Carte des vins" },
-  { img: "/plat-elixir.png", label: "ok signature" }
+  { img: "/plat-elexir.png", label: "L'Élixir en action" },
+  { img: "/salle.png", label: "L'ambiance" },
+  { img: "/cok.png", label: "L'ambiance" },
+  { img: IMG.drinks,        label: "Carte des vins" },
+  { img: "/cuisineM.png", label: "L'Élixir en action" }
 ];
 
 const MENU_IMG_URL_DEFAULT = { midi: null, soir: null };
@@ -124,7 +124,7 @@ const MENU_DATA = {
 };
 
 const HOURS = [
-  { service: "Déjeuner", days: "Mar – Sam", time: "12h00 – 14h30" },
+  { service: "Déjeuner", days: "Mar – Sam", time: "12h00 – 14h00" },
   { service: "Dîner",    days: "Mar – Sam", time: "19h30 – 22h30" },
   { service: "Fermé",    days: "Dim – Lun", time: "—" },
 ];
@@ -144,7 +144,7 @@ const FAQ = [
 
 const SLOTS = { midi: ["12h00", "12h30", "13h00"], soir: ["19h30", "20h00", "20h30"] };
 const MAX_PAX_PER_SLOT = 30;
-const WA_NUMBER = "33600000000";
+const WA_NUMBER = "33223203564";
 
 // ── SOUS-COMPOSANTS ───────────────────────────────────────────────────────────
 
@@ -344,7 +344,7 @@ function ReservationModal({ onClose, reservations, onConfirm }) {
               </div>
             )}
             <button onClick={handleSubmit} style={{ background: G, color: CR2, border: "none", borderRadius: 2, padding: "14px 28px", fontWeight: 700, fontSize: 12, cursor: "pointer", letterSpacing: "0.08em", textTransform: "uppercase", width: "100%", fontFamily: "inherit" }}>Confirmer via WhatsApp</button>
-            <p style={{ color: MU, fontSize: 12, textAlign: "center", margin: 0 }}>Intégration Zenchef à venir · <a href="tel:+33299000000" style={{ color: G, fontWeight: 700 }}>02 99 00 00 00</a></p>
+            <p style={{ color: MU, fontSize: 12, textAlign: "center", margin: 0 }}>Intégration Zenchef à venir · <a href="tel:+33223203564" style={{ color: G, fontWeight: 700 }}>02 23 20 35 64</a></p>
           </div>
         )}
       </div>
@@ -505,8 +505,8 @@ export default function App() {
                 </button>
               </div>
               <div style={{ display: "flex", gap: 20, paddingTop: 4 }}>
-                <a href="https://instagram.com/mamamok_rennes" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textMuted, fontSize: 11, textDecoration: "none", fontWeight: 600, letterSpacing: "0.07em", transition: "color 0.45s" }}>
-                  <Instagram size={14} color={T.text} /> @mamamok_rennes
+                <a href="https://www.instagram.com/mamamok.restaurant" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textMuted, fontSize: 11, textDecoration: "none", fontWeight: 600, letterSpacing: "0.07em", transition: "color 0.45s" }}>
+                  <Instagram size={14} color={T.text} /> @mamamok.restaurant
                 </a>
                 <a href="mailto:bonjour@mamamok.fr" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textMuted, fontSize: 11, textDecoration: "none", fontWeight: 600, letterSpacing: "0.07em", transition: "color 0.45s" }}>
                   <Mail size={14} color={T.text} /> Contact
@@ -529,7 +529,7 @@ export default function App() {
             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 700, color: CR, margin: 0, lineHeight: 1.1, letterSpacing: "-0.01em" }}>L'Élixir.</h2>
           </div>
           <p style={{ color: "rgba(240,234,216,0.72)", fontSize: 15, lineHeight: 1.78, maxWidth: 540, margin: 0 }}>
-            Ce CE n'est pas un condiment. Ce n'est pas un cocktail. C'est un concentré de saveurs préparé chaque matin par nos cuisiniers — versé sur l'assiette au moment de servir, il révèle, intensifie, transforme.
+            Ce n'est pas un condiment. Ce n'est pas un cocktail. C'est un concentré de saveurs préparé chaque matin par nos cuisiniers — versé sur l'assiette au moment de servir, il révèle, intensifie, transforme.
           </p>
           <div className="elixir-kw" style={{ display: "flex", gap: 40, flexWrap: "wrap", justifyContent: "center", paddingTop: 4 }}>
             {["Concentré", "Fluidité", "Précision", "Rituel"].map(kw => (
@@ -662,7 +662,7 @@ export default function App() {
         <div style={{ position: "relative", zIndex: 1, textAlign: "center", padding: "0 24px 52px", maxWidth: 600, display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
           <span style={{ color: "rgba(240,234,216,0.55)", fontSize: 9, fontWeight: 700, letterSpacing: "0.3em", textTransform: "uppercase" }}>Le Lieu · Rennes Centre</span>
           <p style={{ fontFamily: "Georgia, serif", fontSize: "clamp(24px, 4vw, 44px)", fontWeight: 700, color: CR, lineHeight: 1.12, margin: 0 }}>
-            Poussez la porte du<br />12 Rue de la Psalette.
+            Poussez la porte du<br />36 Rue Saint-Georges.
           </p>
           <p style={{ color: "rgba(240,234,216,0.65)", fontSize: 15, lineHeight: 1.72, margin: 0 }}>Sur place ou à emporter. Au cœur du quartier historique de Rennes.</p>
           <button onClick={openModal}
@@ -683,8 +683,8 @@ export default function App() {
           <div className="info-cols" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 40, marginBottom: 56 }}>
             <div>
               <h3 style={{ fontFamily: "Georgia, serif", fontSize: 17, fontWeight: 700, color: G, margin: "0 0 14px", display: "flex", alignItems: "center", gap: 8 }}><MapPin size={17} color={B} /> Adresse</h3>
-              <p style={{ color: MU, fontSize: 14, lineHeight: 1.78, margin: "0 0 16px" }}>12 Rue de la Psalette<br />35000 Rennes<br />Quartier Centre-Ville</p>
-              <a href="https://maps.google.com/?q=12+rue+de+la+Psalette+Rennes" target="_blank" rel="noopener noreferrer" style={{ color: G, fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", textDecoration: "none", borderBottom: `1px solid ${G}`, paddingBottom: 2, display: "inline-flex", alignItems: "center", gap: 4 }}>
+              <p style={{ color: MU, fontSize: 14, lineHeight: 1.78, margin: "0 0 16px" }}>36 Rue Saint-Georges<br />35000 Rennes<br />Quartier Centre-Ville</p>
+              <a href="https://maps.google.com/?q=36+rue+Saint-Georges+Rennes" target="_blank" rel="noopener noreferrer" style={{ color: G, fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", textDecoration: "none", borderBottom: `1px solid ${G}`, paddingBottom: 2, display: "inline-flex", alignItems: "center", gap: 4 }}>
                 Google Maps <ArrowRight size={11} />
               </a>
             </div>
@@ -700,14 +700,14 @@ export default function App() {
             <div>
               <h3 style={{ fontFamily: "Georgia, serif", fontSize: 17, fontWeight: 700, color: G, margin: "0 0 14px", display: "flex", alignItems: "center", gap: 8 }}><Phone size={17} color={B} /> Contact</h3>
               <p style={{ color: MU, fontSize: 14, lineHeight: 1.78, margin: "0 0 20px" }}>
-                <a href="tel:+33299000000" style={{ color: MU, textDecoration: "none" }}>02 99 00 00 00</a><br />
-                <a href="mailto:bonjour@mamamok.fr" style={{ color: MU, textDecoration: "none" }}>bonjour@mamamok.fr</a>
+                <a href="tel:+33223203564" style={{ color: MU, textDecoration: "none" }}>02 23 20 35 64</a><br />
+                <a href="mailto:mamamokrestaurant@gmail.com" style={{ color: MU, textDecoration: "none" }}>mamamokrestaurant@gmail.com</a>
               </p>
               <div style={{ display: "flex", gap: 10 }}>
-                <a href="https://instagram.com/mamamok_rennes" target="_blank" rel="noopener noreferrer" style={{ background: G, color: CR, border: "none", borderRadius: 2, padding: "9px 16px", fontWeight: 700, fontSize: 10, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "0.09em", textTransform: "uppercase" }}>
+                <a href="https://www.instagram.com/mamamok.restaurant" target="_blank" rel="noopener noreferrer" style={{ background: G, color: CR, border: "none", borderRadius: 2, padding: "9px 16px", fontWeight: 700, fontSize: 10, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "0.09em", textTransform: "uppercase" }}>
                   <Instagram size={12} color={CR} /> Instagram
                 </a>
-                <a href="mailto:bonjour@mamamok.fr" style={{ background: "transparent", color: G, border: `1.5px solid ${G}`, borderRadius: 2, padding: "9px 16px", fontWeight: 700, fontSize: 10, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "0.09em", textTransform: "uppercase" }}>
+                <a href="mailto:mamamokrestaurant@gmail.com" style={{ background: "transparent", color: G, border: `1.5px solid ${G}`, borderRadius: 2, padding: "9px 16px", fontWeight: 700, fontSize: 10, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "0.09em", textTransform: "uppercase" }}>
                   <Mail size={12} /> Email
                 </a>
               </div>
@@ -730,8 +730,8 @@ export default function App() {
                 <MapPin size={17} color={CR2} fill={CR2} />
               </div>
               <p style={{ fontFamily: "Georgia, serif", fontWeight: 700, color: G, fontSize: 14, margin: "0 0 2px" }}>Mama Mok</p>
-              <p style={{ color: MU, fontSize: 11, margin: "0 0 12px" }}>12 Rue de la Psalette · Rennes</p>
-              <a href="https://maps.google.com/?q=12+rue+de+la+Psalette+Rennes" target="_blank" rel="noopener noreferrer" style={{ background: G, color: CR2, border: "none", borderRadius: 2, padding: "8px 18px", fontWeight: 700, fontSize: 10, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "0.09em", textTransform: "uppercase" }}>
+              <p style={{ color: MU, fontSize: 11, margin: "0 0 12px" }}>36 Rue Saint-Georges · Rennes</p>
+              <a href="https://maps.google.com/?q=36+rue+Saint-Georges+Rennes" target="_blank" rel="noopener noreferrer" style={{ background: G, color: CR2, border: "none", borderRadius: 2, padding: "8px 18px", fontWeight: 700, fontSize: 10, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "0.09em", textTransform: "uppercase" }}>
                 Itinéraire Google Maps
               </a>
             </div>
@@ -749,10 +749,10 @@ export default function App() {
             <span style={{ color: "rgba(240,234,216,0.4)", fontSize: 10, letterSpacing: "0.12em", textTransform: "uppercase" }}>Restaurant Bistronomique · Rennes</span>
           </div>
           <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
-            <a href="https://instagram.com/mamamok_rennes" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(240,234,216,0.4)", textDecoration: "none", display: "flex", alignItems: "center", gap: 6, fontSize: 11, fontWeight: 600, letterSpacing: "0.08em" }}>
+            <a href="https://www.instagram.com/mamamok.restaurant" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(240,234,216,0.4)", textDecoration: "none", display: "flex", alignItems: "center", gap: 6, fontSize: 11, fontWeight: 600, letterSpacing: "0.08em" }}>
               <Instagram size={15} /> Instagram
             </a>
-            <a href="mailto:bonjour@mamamok.fr" style={{ color: "rgba(240,234,216,0.4)", textDecoration: "none", display: "flex", alignItems: "center", gap: 6, fontSize: 11, fontWeight: 600, letterSpacing: "0.08em" }}>
+            <a href="mailto:mamamokrestaurant@gmail.com" style={{ color: "rgba(240,234,216,0.4)", textDecoration: "none", display: "flex", alignItems: "center", gap: 6, fontSize: 11, fontWeight: 600, letterSpacing: "0.08em" }}>
               <Mail size={15} /> Email
             </a>
           </div>
