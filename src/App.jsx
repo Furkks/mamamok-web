@@ -418,7 +418,7 @@ export default function App() {
       <main>
 
       {/* ── HERO ── */}
-      <section ref={heroRef} style={{ paddingTop: NAV_H }}>
+      <section ref={heroRef} style={{ paddingTop: NAV_H, borderBottom: isNight ? `1px solid rgba(240,234,216,0.15)` : `1px solid ${BORDER}`, transition: "border-color 0.45s ease" }}>
         <div className="hero-split" style={{ display: "flex", minHeight: `calc(100vh - ${NAV_H}px)` }}>
           <div className="hero-copy" style={{ flex: "0 0 50%", display: "flex", flexDirection: "column", justifyContent: "center", padding: "64px 52px 64px 44px", borderRight: `1px solid ${T.border}`, background: T.bg, transition: "background 0.45s ease, border-color 0.45s ease" }}>
             <div className="mm-fadein" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
