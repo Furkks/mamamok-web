@@ -59,20 +59,19 @@ export default function AdminPanel() {
 
   // Upload PDF
   const handleUpload = async (service, file) => {
-    if (!file || !["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+    if (!file || file.type !== "application/pdf") {
       setFeedback(f => ({ ...f, [service]: "err" }));
       return;
     }
     setUploading(u => ({ ...u, [service]: true }));
     setFeedback(f => ({ ...f, [service]: null }));
 
-    const ext = file.name.split(".").pop().toLowerCase();
-    const fileName = `carte-${service}-${Date.now()}.${ext}`;
+    const fileName = `carte-${service}-${Date.now()}.pdf`;
 
     // Upload dans le bucket Supabase Storage
     const { error: uploadErr } = await supabase.storage
       .from("cartes")
-      .upload(fileName, file, { upsert: true, contentType: file.type });
+      .upload(fileName, file, { upsert: true, contentType: "application/pdf" });
 
     if (uploadErr) {
       setFeedback(f => ({ ...f, [service]: "err" }));
@@ -198,7 +197,7 @@ export default function AdminPanel() {
               <label style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10, padding: "24px 16px", border: `2px dashed ${BORDER}`, borderRadius: 2, cursor: "pointer", transition: "border-color 0.2s", background: "#fff" }}
                 onDragOver={e => e.preventDefault()}
                 onDrop={e => { e.preventDefault(); handleUpload(service, e.dataTransfer.files[0]); }}>
-                <input type="file" accept="image/jpeg,image/png,image/webp" style={{ display: "none" }}
+                <input type="file" accept="application/pdf" style={{ display: "none" }}
                   onChange={e => handleUpload(service, e.target.files[0])} />
                 {uploading[service] ? (
                   <div style={{ display: "flex", alignItems: "center", gap: 8, color: G }}>
@@ -213,7 +212,7 @@ export default function AdminPanel() {
                 ) : feedback[service] === "err" ? (
                   <div style={{ display: "flex", alignItems: "center", gap: 8, color: B }}>
                     <X size={18} />
-                    <span style={{ fontSize: 13, fontWeight: 600 }}>Erreur — JPG ou PNG uniquement</span>
+                    <span style={{ fontSize: 13, fontWeight: 600 }}>Erreur — PDF uniquement</span>
                   </div>
                 ) : (
                   <>
@@ -227,7 +226,7 @@ export default function AdminPanel() {
               </label>
 
               <p style={{ margin: 0, fontSize: 11, color: MU, textAlign: "center" }}>
-                Format JPG ou PNG · Max 50 MB
+                Format PDF uniquement · Max 50 MB
               </p>
             </div>
           ))}
@@ -237,9 +236,9 @@ export default function AdminPanel() {
         <div style={{ marginTop: 32, padding: "20px 24px", background: CR2, border: `1px solid ${BORDER}`, borderRadius: 4 }}>
           <h4 style={{ fontFamily: "Georgia, serif", fontSize: 15, fontWeight: 700, color: G, margin: "0 0 10px" }}>Comment ça marche ?</h4>
           <ol style={{ color: MU, fontSize: 13, lineHeight: 1.8, margin: 0, paddingLeft: 18 }}>
-            <li>Exportez votre carte Canva en JPG (Partager → Télécharger → JPG)</li>
+            <li>Exportez votre carte en PDF depuis Canva (Partager → Télécharger → PDF)</li>
             <li>Glissez le fichier dans la zone correspondante (Midi ou Soir)</li>
-            <li>Le site se met à jour instantanément — vos clients voient la nouvelle carte immédiatement</li>
+            <li>Le site se met à jour instantanément</li>
           </ol>
         </div>
 

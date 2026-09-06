@@ -507,18 +507,24 @@ export default function App() {
         {menuImgUrl[service] ? (
           <div style={{ background: T.bg, padding: "0 28px 48px", transition: "background 0.45s ease" }}>
             <div style={{ maxWidth: 860, margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-              <img
-                src={menuImgUrl[service]}
-                alt={`Carte ${service} du restaurant Mama Mok Rennes`}
+              <embed
+                src={`${menuImgUrl[service]}#toolbar=0&navpanes=0&scrollbar=0`}
+                type="application/pdf"
                 style={{
-                  width: "100%", height: "auto", display: "block",
+                  width: "100%",
+                  height: "80vh",
                   borderRadius: 4,
                   border: isNight ? "1px solid rgba(240,234,216,0.2)" : `1px solid ${BORDER}`,
-                  boxShadow: isNight
-                    ? "0 10px 40px rgba(0,0,0,0.4)"
-                    : "0 10px 30px rgba(0,0,0,0.08)",
+                  boxShadow: isNight ? "0 10px 40px rgba(0,0,0,0.4)" : "0 10px 30px rgba(0,0,0,0.08)",
+                  display: "block",
                 }}
               />
+              <a href={menuImgUrl[service]} target="_blank" rel="noopener noreferrer"
+                style={{ color: T.textMuted, fontSize: 11, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", borderBottom: `1px solid ${T.border}`, paddingBottom: 2, transition: "color 0.45s" }}>
+                Ouvrir en plein écran <ArrowRight size={11} />
+              </a>
+            </div>
+          </div>
               <a href={menuImgUrl[service]} target="_blank" rel="noopener noreferrer"
                 style={{ color: T.textMuted, fontSize: 11, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", borderBottom: `1px solid ${T.border}`, paddingBottom: 2, transition: "color 0.45s" }}>
                 Ouvrir en plein écran <ArrowRight size={11} />
