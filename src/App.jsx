@@ -454,7 +454,7 @@ export default function App() {
       </section>
 
       {/* ── SECTION ÉLIXIR ── */}
-      <section style={{ background: B, padding: "48px 20px" }}>
+      <section style={{ background: G2, padding: "48px 20px" }}>
         <div style={{ maxWidth: 960, margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 28 }}>
           <DroppingElixir size={64} color={CR} />
           <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "center" }}>
