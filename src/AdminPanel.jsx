@@ -59,7 +59,8 @@ export default function AdminPanel() {
 
   // Upload PDF
   const handleUpload = async (service, file) => {
-    if (!file || file.type !== "application/pdf") {
+    const isPdf = file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf");
+    if (!file || !isPdf) {
       setFeedback(f => ({ ...f, [service]: "err" }));
       return;
     }
