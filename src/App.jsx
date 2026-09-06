@@ -74,11 +74,11 @@ const IMG = {
 };
 
 const CAROUSEL_SLIDES = [
-  { img: IMG.food,          label: "Cuisine de saison" },
   { img: "/plat-elexir.png", label: "L'Élixir en action" },
-  { img: IMG.drinks,        label: "Élixirs & cocktails" },
-  { img: IMG.food,          label: "Geste signature" },
-  { img: IMG.drinks,        label: "Carte des vins" },
+  { img: "/salle.png",       label: "L'ambiance" },
+  { img: "/cok.png",         label: "L'ambiance" },
+  { img: IMG.drinks,         label: "Carte des vins" },
+  { img: "/cuisineM.png",    label: "L'Élixir en action" },
 ];
 
 const MENU_IMG_URL_DEFAULT = { midi: null, soir: null };
