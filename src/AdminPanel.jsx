@@ -79,22 +79,14 @@ export default function AdminPanel() {
       return;
     }
 
-    // Récupère l'URL publique
+    // Récupère l'URL publique avec cache-busting
     const { data: urlData } = supabase.storage.from("cartes").getPublicUrl(fileName);
-    const publicUrl = urlData.publicUrl;
+    const publicUrl = `${urlData.publicUrl}?t=${Date.now()}`;
 
-    // Met à jour la table carte_urls (upsert sur le service)
-    const { data: existing } = await supabase
+    // Upsert natif Supabase — crée ou met à jour selon le service
+    await supabase
       .from("carte_urls")
-      .select("id")
-      .eq("service", service)
-      .single();
-
-    if (existing) {
-      await supabase.from("carte_urls").update({ pdf_url: publicUrl }).eq("service", service);
-    } else {
-      await supabase.from("carte_urls").insert({ service, pdf_url: publicUrl });
-    }
+      .upsert({ service, pdf_url: publicUrl }, { onConflict: "service" });
 
     setCarteUrls(u => ({ ...u, [service]: publicUrl }));
     setFeedback(f => ({ ...f, [service]: "ok" }));
