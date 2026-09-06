@@ -684,7 +684,7 @@ export default function App() {
             <div>
               <h3 style={{ fontFamily: "Georgia, serif", fontSize: 17, fontWeight: 700, color: G, margin: "0 0 14px", display: "flex", alignItems: "center", gap: 8 }}><MapPin size={17} color={B} /> Adresse</h3>
               <p style={{ color: MU, fontSize: 14, lineHeight: 1.78, margin: "0 0 16px" }}>36 Rue Saint-Georges<br />35000 Rennes<br />Quartier Centre-Ville</p>
-              <a href="https://maps.google.com/?q=36+rue+Saint-Georges+Rennes" target="_blank" rel="noopener noreferrer" style={{ color: G, fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", textDecoration: "none", borderBottom: `1px solid ${G}`, paddingBottom: 2, display: "inline-flex", alignItems: "center", gap: 4 }}>
+              <a href="https://maps.app.goo.gl/8GRtWUaZVgaEjuWAA" target="_blank" rel="noopener noreferrer" style={{ color: G, fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", textDecoration: "none", borderBottom: `1px solid ${G}`, paddingBottom: 2, display: "inline-flex", alignItems: "center", gap: 4 }}>
                 Google Maps <ArrowRight size={11} />
               </a>
             </div>
