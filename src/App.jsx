@@ -189,16 +189,6 @@ export default function App() {
   const infosRef   = useRef(null);
   const NAV_H = 66;
 
-  // Zenchef SDK
-  useEffect(() => {
-    if (document.getElementById("zenchef-sdk")) return;
-    const el = document.getElementsByTagName("script")[0];
-    const js = document.createElement("script");
-    js.id = "zenchef-sdk";
-    js.src = "https://sdk.zenchef.com/v1/sdk.min.js";
-    el.parentNode.insertBefore(js, el);
-  }, []);
-
   useEffect(() => {
     const fn = () => { setSc(window.scrollY > 40); setFab((heroRef.current?.getBoundingClientRect().bottom ?? 0) < 0); };
     window.addEventListener("scroll", fn, { passive: true });
@@ -235,10 +225,19 @@ export default function App() {
   }, []);
 
   const go = (ref) => { setMob(false); setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80); };
-  
-  // Ouvre le widget Zenchef
+
+  // Zenchef — SDK chargé uniquement au premier clic (pas au chargement de la page)
   const openZenchef = () => {
-    if (window.ZenchefSDK) window.ZenchefSDK.open();
+    if (window.ZenchefSDK) {
+      window.ZenchefSDK.open();
+      return;
+    }
+    const el = document.getElementsByTagName("script")[0];
+    const js = document.createElement("script");
+    js.id = "zenchef-sdk";
+    js.src = "https://sdk.zenchef.com/v1/sdk.min.js";
+    js.onload = () => { setTimeout(() => { if (window.ZenchefSDK) window.ZenchefSDK.open(); }, 300); };
+    el.parentNode.insertBefore(js, el);
   };
 
   const NAV = [
@@ -286,8 +285,7 @@ export default function App() {
         @media(min-width:801px){ #mob-btn{display:none !important} #desk-nav{display:flex !important} }
       `}</style>
 
-      {/* Widget Zenchef */}
-      <div className="zc-widget-config" data-restaurant="387411" data-open="0" />
+
 
       {/* ── NAVBAR ── */}
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 200, background: scrolled ? T.bgNav : T.bgNavBase, backdropFilter: scrolled ? "blur(10px)" : "none", borderBottom: `1px solid ${T.borderNav}`, transition: "background 0.45s ease, border-color 0.45s ease" }}>
