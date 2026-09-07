@@ -287,7 +287,7 @@ export default function App() {
       `}</style>
 
       {/* Widget Zenchef */}
-      <div className="zc-widget-config" data-restaurant="387411" data-open="2000" />
+      <div className="zc-widget-config" data-restaurant="387411" data-open="0" />
 
       {/* ── NAVBAR ── */}
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 200, background: scrolled ? T.bgNav : T.bgNavBase, backdropFilter: scrolled ? "blur(10px)" : "none", borderBottom: `1px solid ${T.borderNav}`, transition: "background 0.45s ease, border-color 0.45s ease" }}>
@@ -580,8 +580,10 @@ export default function App() {
               <Mail size={15} /> Email
             </a>
           </div>
-          <span style={{ color: "rgba(240,234,216,0.22)", fontSize: 11 }}>© {new Date().getFullYear()} Mama Mok · Tous droits réservés</span>
-          <a href="/admin" style={{ color: "rgba(240,234,216,0.25)", fontSize: 10, textDecoration: "none", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, border: "1px solid rgba(240,234,216,0.15)", borderRadius: 2, padding: "5px 10px" }}>Admin</a>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
+            <span style={{ color: "rgba(240,234,216,0.22)", fontSize: 11 }}>© {new Date().getFullYear()} Mama Mok · Tous droits réservés</span>
+            <a href="/admin" style={{ color: "rgba(240,234,216,0.3)", fontSize: 10, textDecoration: "none", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, border: "1px solid rgba(240,234,216,0.15)", borderRadius: 2, padding: "5px 10px" }}>Admin</a>
+          </div>
         </div>
       </footer>
 
