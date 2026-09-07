@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { MapPin, Clock, Phone, ArrowRight, Menu, X, Mail, CalendarHeart, Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { MapPin, Clock, Phone, ArrowRight, Menu, X, Mail, ChevronLeft, ChevronRight } from "lucide-react";
 import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
@@ -102,9 +102,6 @@ const FAQ = [
   { q: "Le restaurant est-il accessible PMR ?",       a: "Oui, salle de plain-pied. Contactez-nous pour tout besoin spécifique." },
 ];
 
-const SLOTS = { midi: ["12h00", "12h30", "13h00"], soir: ["19h30", "20h00", "20h30"] };
-const MAX_PAX_PER_SLOT = 30;
-const WA_NUMBER = "33223203564";
 
 // ── SOUS-COMPOSANTS ───────────────────────────────────────────────────────────
 
@@ -175,126 +172,12 @@ function FaqItem({ item }) {
   );
 }
 
-function ReservationModal({ onClose, reservations, onConfirm }) {
-  const EMPTY = { nom: "", tel: "", date: "", service: "", slot: "", pax: "2" };
-  const [form, setForm]           = useState(EMPTY);
-  const [confirmed, setConfirmed] = useState(null);
-  const [errors, setErrors]       = useState({});
-
-  const paxForSlot = (date, slot) => reservations[`${date}__${slot}`] || 0;
-  const remaining  = form.date && form.slot ? MAX_PAX_PER_SLOT - paxForSlot(form.date, form.slot) : null;
-  const isFull     = remaining !== null && remaining <= 0;
-
-  const validate = () => {
-    const e = {};
-    if (!form.nom.trim()) e.nom  = "Nom requis";
-    if (!form.tel.trim()) e.tel  = "Téléphone requis";
-    if (!form.date)       e.date = "Date requise";
-    if (!form.slot)       e.slot = "Créneau requis";
-    if (isFull)           e.slot = "Créneau complet";
-    const n = parseInt(form.pax);
-    if (remaining !== null && n > remaining) e.pax = `Plus que ${remaining} place${remaining > 1 ? "s" : ""} disponible${remaining > 1 ? "s" : ""}`;
-    setErrors(e);
-    return Object.keys(e).length === 0;
-  };
-
-  const handleSubmit = () => {
-    if (!validate()) return;
-    onConfirm(form.date, form.slot, parseInt(form.pax));
-    const msg = ["Bonjour Mama Mok ! 🍽️", "Je souhaite réserver une table :",
-      `- Nom : ${form.nom}`, `- Personnes : ${form.pax}`,
-      `- Date : ${form.date}`, `- Créneau : ${form.slot}`,
-      `- Téléphone : ${form.tel}`].join("\n");
-    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, "_blank");
-    setConfirmed(form);
-    setForm(EMPTY);
-  };
-
-  const inputS = (err) => ({ width: "100%", boxSizing: "border-box", border: `1px solid ${err ? B : BORDER}`, borderRadius: 2, padding: "11px 14px", fontSize: 14, color: G, background: CR2, fontFamily: "inherit", outline: "none" });
-  const labelS = { display: "block", fontSize: 9, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: MU, marginBottom: 6 };
-  const currentSlots = form.service === "midi" ? SLOTS.midi : form.service === "soir" ? SLOTS.soir : [];
-
-  return (
-    <div onClick={e => e.target === e.currentTarget && onClose()} style={{ position: "fixed", inset: 0, zIndex: 500, background: "rgba(24,30,20,0.65)", backdropFilter: "blur(5px)", display: "flex", alignItems: "center", justifyContent: "center", padding: "20px 16px" }}>
-      <div style={{ background: CR2, width: "100%", maxWidth: 500, borderRadius: 2, boxShadow: "0 24px 60px rgba(0,0,0,0.35)", maxHeight: "90vh", overflowY: "auto" }}>
-        <div style={{ padding: "24px 24px 18px", borderBottom: `1px solid ${BORDER}`, display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-          <div>
-            <p style={{ margin: "0 0 3px", fontSize: 9, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: B }}>Mama Mok · Rennes</p>
-            <h2 style={{ fontFamily: "Georgia, serif", fontSize: 22, fontWeight: 700, color: G, margin: 0 }}>Réserver une table</h2>
-          </div>
-          <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", color: MU, padding: 4 }} aria-label="Fermer"><X size={20} /></button>
-        </div>
-        {confirmed ? (
-          <div style={{ padding: "36px 24px 32px", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 18 }}>
-            <div style={{ width: 50, height: 50, borderRadius: "50%", background: G, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Check size={22} color={CR2} strokeWidth={2.5} />
-            </div>
-            <div>
-              <h3 style={{ fontFamily: "Georgia, serif", fontSize: 20, fontWeight: 700, color: G, margin: "0 0 10px" }}>Réservation envoyée</h3>
-              <p style={{ color: MU, fontSize: 14, lineHeight: 1.7, margin: 0 }}>{confirmed.pax} personne{confirmed.pax > 1 ? "s" : ""} · {confirmed.date} · {confirmed.slot}</p>
-              <p style={{ color: MU, fontSize: 13, marginTop: 8 }}>Un message WhatsApp a été transmis au restaurant.</p>
-            </div>
-            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
-              <button onClick={() => setConfirmed(null)} style={{ background: "transparent", color: G, border: `1px solid ${G}`, borderRadius: 2, padding: "10px 20px", fontWeight: 700, fontSize: 12, cursor: "pointer", letterSpacing: "0.07em", textTransform: "uppercase" }}>Nouvelle réservation</button>
-              <button onClick={onClose} style={{ background: G, color: CR2, border: "none", borderRadius: 2, padding: "10px 20px", fontWeight: 700, fontSize: 12, cursor: "pointer", letterSpacing: "0.07em", textTransform: "uppercase" }}>Fermer</button>
-            </div>
-          </div>
-        ) : (
-          <div style={{ padding: "20px 24px 24px", display: "flex", flexDirection: "column", gap: 18 }}>
-            <div><label style={labelS}>Nom complet</label><input value={form.nom} onChange={e => setForm({...form, nom: e.target.value})} placeholder="Marie Dupont" style={inputS(errors.nom)} />{errors.nom && <p style={{ color: B, fontSize: 12, margin: "4px 0 0" }}>{errors.nom}</p>}</div>
-            <div><label style={labelS}>Téléphone</label><input value={form.tel} onChange={e => setForm({...form, tel: e.target.value})} placeholder="06 00 00 00 00" type="tel" style={inputS(errors.tel)} />{errors.tel && <p style={{ color: B, fontSize: 12, margin: "4px 0 0" }}>{errors.tel}</p>}</div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
-              <div><label style={labelS}>Date</label><input value={form.date} onChange={e => setForm({...form, date: e.target.value, slot: ""})} type="date" min={new Date().toISOString().split("T")[0]} style={inputS(errors.date)} />{errors.date && <p style={{ color: B, fontSize: 12, margin: "4px 0 0" }}>{errors.date}</p>}</div>
-              <div><label style={labelS}>Personnes</label><select value={form.pax} onChange={e => setForm({...form, pax: e.target.value})} style={{...inputS(errors.pax), cursor: "pointer"}}>{[1,2,3,4,5,6,7,8,9,10].map(n => <option key={n} value={n}>{n} {n===1?"personne":"personnes"}</option>)}</select>{errors.pax && <p style={{ color: B, fontSize: 12, margin: "4px 0 0" }}>{errors.pax}</p>}</div>
-            </div>
-            <div><label style={labelS}>Service</label>
-              <div style={{ display: "flex", gap: 10 }}>
-                {["midi","soir"].map(s => (
-                  <button key={s} onClick={() => setForm({...form, service: s, slot: ""})} style={{ flex: 1, border: `1.5px solid ${form.service===s ? G : BORDER}`, borderRadius: 2, padding: "10px 0", background: form.service===s ? G : "transparent", color: form.service===s ? CR2 : MU, fontWeight: 700, fontSize: 13, letterSpacing: "0.07em", textTransform: "uppercase", cursor: "pointer", fontFamily: "inherit" }}>
-                    {s === "midi" ? "Midi" : "Soir"}
-                  </button>
-                ))}
-              </div>
-            </div>
-            {currentSlots.length > 0 && form.date && (
-              <div><label style={labelS}>Créneau</label>
-                <div style={{ display: "flex", gap: 8 }}>
-                  {currentSlots.map(slot => {
-                    const left = MAX_PAX_PER_SLOT - paxForSlot(form.date, slot);
-                    const full = left <= 0; const sel = form.slot === slot;
-                    return (
-                      <button key={slot} disabled={full} onClick={() => setForm({...form, slot})} style={{ flex: 1, border: `1.5px solid ${full ? BORDER : sel ? G : BORDER}`, borderRadius: 2, padding: "10px 4px", cursor: full ? "not-allowed" : "pointer", background: full ? CR : sel ? G : "transparent", color: full ? MU : sel ? CR2 : G, display: "flex", flexDirection: "column", alignItems: "center", gap: 3, opacity: full ? 0.6 : 1, transition: "all 0.18s" }}>
-                        <span style={{ fontWeight: 700, fontSize: 15 }}>{slot}</span>
-                        <span style={{ fontSize: 9, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: full ? MU : sel ? "rgba(240,234,216,0.7)" : left <= 6 ? B : MU }}>{full ? "Complet" : left <= 6 ? `${left} pl.` : "Dispo"}</span>
-                      </button>
-                    );
-                  })}
-                </div>
-                {errors.slot && <p style={{ color: B, fontSize: 12, margin: "8px 0 0" }}>{errors.slot}</p>}
-              </div>
-            )}
-            {remaining !== null && !isFull && (
-              <div style={{ background: remaining <= 6 ? "rgba(129,19,50,0.08)" : "rgba(24,30,20,0.07)", border: `1px solid ${remaining <= 6 ? "rgba(129,19,50,0.2)" : "rgba(24,30,20,0.15)"}`, borderRadius: 2, padding: "10px 14px", fontSize: 13, color: remaining <= 6 ? B : G, fontWeight: 600 }}>
-                {remaining <= 6 ? `⚠️ Plus que ${remaining} place${remaining>1?"s":""} disponible${remaining>1?"s":""}.` : `✓ ${remaining} places disponibles.`}
-              </div>
-            )}
-            <button onClick={handleSubmit} style={{ background: G, color: CR2, border: "none", borderRadius: 2, padding: "14px 28px", fontWeight: 700, fontSize: 12, cursor: "pointer", letterSpacing: "0.08em", textTransform: "uppercase", width: "100%", fontFamily: "inherit" }}>Confirmer via WhatsApp</button>
-            <p style={{ color: MU, fontSize: 12, textAlign: "center", margin: 0 }}>Intégration Zenchef à venir · <a href="tel:+33223203564" style={{ color: G, fontWeight: 700 }}>02 23 20 35 64</a></p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
 // ── APP ───────────────────────────────────────────────────────────────────────
 export default function App() {
   const [mob, setMob]           = useState(false);
   const [scrolled, setSc]       = useState(false);
-  const [modalOpen, setModal]   = useState(false);
   const [service, setService]   = useState("midi");
   const [fabVisible, setFab]    = useState(false);
-  const [reservations, setRes]  = useState({});
   const [menuImgUrl, setImgUrl] = useState(MENU_IMG_URL_DEFAULT);
 
   const isNight = service === "soir";
@@ -306,13 +189,21 @@ export default function App() {
   const infosRef   = useRef(null);
   const NAV_H = 66;
 
+  // Zenchef SDK
+  useEffect(() => {
+    if (document.getElementById("zenchef-sdk")) return;
+    const el = document.getElementsByTagName("script")[0];
+    const js = document.createElement("script");
+    js.id = "zenchef-sdk";
+    js.src = "https://sdk.zenchef.com/v1/sdk.min.js";
+    el.parentNode.insertBefore(js, el);
+  }, []);
+
   useEffect(() => {
     const fn = () => { setSc(window.scrollY > 40); setFab((heroRef.current?.getBoundingClientRect().bottom ?? 0) < 0); };
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
-
-  useEffect(() => { document.body.style.overflow = modalOpen ? "hidden" : ""; return () => { document.body.style.overflow = ""; }; }, [modalOpen]);
 
   useEffect(() => {
     const s = document.createElement("style");
@@ -323,18 +214,18 @@ export default function App() {
     document.head.appendChild(s);
   }, []);
 
-  // Charge les URLs directement depuis Storage — pas de table DB
+  // Charge les cartes depuis Supabase Storage
   useEffect(() => {
     const SUPA_URL = "https://xscdqxfvrmjlxeilrxnb.supabase.co";
     const NAMES = { midi: "carte-midi-current", soir: "carte-soir-current" };
     const loadUrls = async () => {
       const imgs = { midi: null, soir: null };
-      for (const service of ["midi", "soir"]) {
+      for (const svc of ["midi", "soir"]) {
         for (const ext of ["pdf", "jpg", "png"]) {
-          const url = `${SUPA_URL}/storage/v1/object/public/cartes/${NAMES[service]}.${ext}`;
+          const url = `${SUPA_URL}/storage/v1/object/public/cartes/${NAMES[svc]}.${ext}`;
           try {
             const res = await fetch(url, { method: "HEAD" });
-            if (res.ok) { imgs[service] = `${url}?t=${Date.now()}`; break; }
+            if (res.ok) { imgs[svc] = `${url}?t=${Date.now()}`; break; }
           } catch {}
         }
       }
@@ -344,8 +235,11 @@ export default function App() {
   }, []);
 
   const go = (ref) => { setMob(false); setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80); };
-  const openModal = () => { setMob(false); setModal(true); };
-  const handleConfirm = (date, slot, pax) => { const key = `${date}__${slot}`; setRes(prev => ({ ...prev, [key]: (prev[key] || 0) + pax })); };
+  
+  // Ouvre le widget Zenchef
+  const openZenchef = () => {
+    if (window.ZenchefSDK) window.ZenchefSDK.open();
+  };
 
   const NAV = [
     { label: "La Carte",    ref: menuRef },
@@ -392,7 +286,8 @@ export default function App() {
         @media(min-width:801px){ #mob-btn{display:none !important} #desk-nav{display:flex !important} }
       `}</style>
 
-      {modalOpen && <ReservationModal onClose={() => setModal(false)} reservations={reservations} onConfirm={handleConfirm} />}
+      {/* Widget Zenchef */}
+      <div className="zc-widget-config" data-restaurant="387411" data-open="2000" />
 
       {/* ── NAVBAR ── */}
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 200, background: scrolled ? T.bgNav : T.bgNavBase, backdropFilter: scrolled ? "blur(10px)" : "none", borderBottom: `1px solid ${T.borderNav}`, transition: "background 0.45s ease, border-color 0.45s ease" }}>
@@ -409,7 +304,7 @@ export default function App() {
                 {label}
               </button>
             ))}
-            <button onClick={openModal} style={btn()}><CalendarHeart size={13} /> Réserver</button>
+            <button onClick={openZenchef} style={btn()}>Réserver</button>
           </div>
           <button id="mob-btn" onClick={() => setMob(!mob)} style={{ background: "none", border: "none", cursor: "pointer", color: T.text, padding: 4, display: "none" }}>
             {mob ? <X size={24} /> : <Menu size={24} />}
@@ -420,7 +315,7 @@ export default function App() {
             {NAV.map(({ label, ref }) => (
               <button key={label} onClick={() => go(ref)} style={{ background: "none", border: "none", cursor: "pointer", color: T.text, fontSize: 16, fontWeight: 700, textTransform: "uppercase", textAlign: "left", padding: "10px 0", borderBottom: `1px solid ${T.border}`, letterSpacing: "0.07em" }}>{label}</button>
             ))}
-            <button onClick={openModal} style={{ ...btn(), marginTop: 14, justifyContent: "center" }}><CalendarHeart size={13} /> Réserver une table</button>
+            <button onClick={openZenchef} style={{ ...btn(), marginTop: 14, justifyContent: "center" }}>Réserver une table</button>
           </div>
         )}
       </header>
@@ -443,7 +338,7 @@ export default function App() {
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                 <button onClick={() => go(menuRef)} style={btn()}>La Carte <ArrowRight size={13} /></button>
-                <button onClick={openModal} style={{ background: "transparent", color: T.text, border: `1.5px solid ${T.text}`, borderRadius: 2, padding: "10px 22px", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", cursor: "pointer", fontFamily: "inherit", transition: "color 0.45s ease, border-color 0.45s ease" }}>
+                <button onClick={openZenchef} style={{ background: "transparent", color: T.text, border: `1.5px solid ${T.text}`, borderRadius: 2, padding: "10px 22px", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", cursor: "pointer", fontFamily: "inherit", transition: "color 0.45s ease, border-color 0.45s ease" }}>
                   Réserver
                 </button>
               </div>
@@ -535,12 +430,6 @@ export default function App() {
               </a>
             </div>
           </div>
-              <a href={menuImgUrl[service]} target="_blank" rel="noopener noreferrer"
-                style={{ color: T.textMuted, fontSize: 11, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", borderBottom: `1px solid ${T.border}`, paddingBottom: 2, transition: "color 0.45s" }}>
-                Ouvrir en plein écran <ArrowRight size={11} />
-              </a>
-            </div>
-          </div>
         ) : (
           <div style={{ maxWidth: 860, margin: "0 auto", padding: "0 28px 80px", textAlign: "center" }}>
             <p style={{ color: T.textMuted, fontSize: 14, lineHeight: 1.7 }}>
@@ -556,7 +445,7 @@ export default function App() {
               <p style={{ margin: "0 0 2px", fontWeight: 700, color: T.text, fontSize: 13, transition: "color 0.45s ease" }}>Carte des vins & élixirs</p>
               <p style={{ margin: 0, color: T.textMuted, fontSize: 12, transition: "color 0.45s ease" }}>Disponible à table ou sur demande.</p>
             </div>
-            <button onClick={openModal} style={btn()}>Réserver une table</button>
+            <button onClick={openZenchef} style={btn()}>Réserver une table</button>
           </div>
         </div>
       </section>
@@ -608,7 +497,7 @@ export default function App() {
             Poussez la porte du<br />36 Rue Saint-Georges.
           </p>
           <p style={{ color: "rgba(240,234,216,0.65)", fontSize: 15, lineHeight: 1.72, margin: 0 }}>Sur place ou à emporter. Au cœur du quartier historique de Rennes.</p>
-          <button onClick={openModal}
+          <button onClick={openZenchef}
             onMouseEnter={e => { e.currentTarget.style.background = CR; e.currentTarget.style.color = G; }}
             onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = CR; }}
             style={{ marginTop: 4, background: "transparent", color: CR, border: "1.5px solid rgba(240,234,216,0.45)", borderRadius: 2, padding: "12px 28px", fontWeight: 700, fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer", fontFamily: "inherit", transition: "background 0.2s, color 0.2s" }}>
@@ -698,11 +587,11 @@ export default function App() {
 
       {/* ── FAB ── */}
       {fabVisible && (
-        <button className="mm-fab-in" onClick={openModal} aria-label="Réserver une table au restaurant Mama Mok"
+        <button className="mm-fab-in" onClick={openZenchef} aria-label="Réserver une table au restaurant Mama Mok"
           onMouseEnter={e => { e.currentTarget.style.background = B2; e.currentTarget.style.transform = "translateY(-2px)"; }}
           onMouseLeave={e => { e.currentTarget.style.background = B; e.currentTarget.style.transform = "translateY(0)"; }}
           style={{ position: "fixed", bottom: 24, right: 24, zIndex: 150, background: B, color: CR2, border: "none", borderRadius: 40, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, fontSize: 11, fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", cursor: "pointer", boxShadow: "0 4px 20px rgba(129,19,50,0.4)", fontFamily: "inherit", transition: "background 0.2s, transform 0.2s" }}>
-          <CalendarHeart size={14} strokeWidth={2} />
+          
           Réserver
         </button>
       )}
