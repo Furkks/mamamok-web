@@ -226,18 +226,28 @@ export default function App() {
 
   const go = (ref) => { setMob(false); setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80); };
 
-  // Zenchef — SDK chargé uniquement au premier clic (pas au chargement de la page)
+  // Zenchef — chargé et ouvert uniquement au clic
   const openZenchef = () => {
-    if (window.ZenchefSDK) {
-      window.ZenchefSDK.open();
+    if (document.getElementById("zenchef-sdk")) {
+      if (window.ZenchefSDK) window.ZenchefSDK.open();
       return;
     }
-    const el = document.getElementsByTagName("script")[0];
-    const js = document.createElement("script");
-    js.id = "zenchef-sdk";
-    js.src = "https://sdk.zenchef.com/v1/sdk.min.js";
-    js.onload = () => { setTimeout(() => { if (window.ZenchefSDK) window.ZenchefSDK.open(); }, 300); };
-    el.parentNode.insertBefore(js, el);
+    const script = document.createElement("script");
+    script.id = "zenchef-sdk";
+    script.src = "https://sdk.zenchef.com/v1/sdk.min.js";
+    script.onload = () => {
+      // Injecte la config seulement après le clic, pas au chargement
+      if (!document.getElementById("zc-config")) {
+        const div = document.createElement("div");
+        div.id = "zc-config";
+        div.className = "zc-widget-config";
+        div.setAttribute("data-restaurant", "387411");
+        div.setAttribute("data-open", "0");
+        document.body.appendChild(div);
+      }
+      setTimeout(() => { if (window.ZenchefSDK) window.ZenchefSDK.open(); }, 500);
+    };
+    document.head.appendChild(script);
   };
 
   const NAV = [
@@ -578,10 +588,15 @@ export default function App() {
               <Mail size={15} /> Email
             </a>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
+        </div>
+        {/* Barre basse — mentions légales + admin */}
+        <div style={{ maxWidth: 1160, margin: "20px auto 0", paddingTop: 16, borderTop: "1px solid rgba(240,234,216,0.1)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+          <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
             <span style={{ color: "rgba(240,234,216,0.22)", fontSize: 11 }}>© {new Date().getFullYear()} Mama Mok · Tous droits réservés</span>
-            <a href="/admin" style={{ color: "rgba(240,234,216,0.3)", fontSize: 10, textDecoration: "none", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, border: "1px solid rgba(240,234,216,0.15)", borderRadius: 2, padding: "5px 10px" }}>Admin</a>
+            <a href="https://labrickrouge.fr/" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(240,234,216,0.35)", fontSize: 11, textDecoration: "none" }}>Mentions légales</a>
+            <a href="https://labrickrouge.fr/" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(240,234,216,0.35)", fontSize: 11, textDecoration: "none" }}>CGV</a>
           </div>
+          <a href="/admin" style={{ color: "rgba(240,234,216,0.25)", fontSize: 10, textDecoration: "none", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, border: "1px solid rgba(240,234,216,0.12)", borderRadius: 2, padding: "4px 10px" }}>Admin</a>
         </div>
       </footer>
 
