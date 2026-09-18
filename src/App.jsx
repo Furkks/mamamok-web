@@ -400,7 +400,7 @@ export default function App() {
           <p style={{ color: B, fontSize: 9, letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700, margin: "0 0 10px" }}>Cuisine & Saison</p>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: 16, marginBottom: 40 }}>
             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 700, color: T.text, margin: 0, transition: "color 0.45s ease" }}>Notre Carte</h2>
-            <p style={{ color: T.textMuted, fontSize: 13, margin: 0, maxWidth: 320, lineHeight: 1.65, transition: "color 0.45s ease" }}>Produits sourcés chaque matin. La carte suit les saisons.</p>
+            <p style={{ color: T.textMuted, fontSize: 13, margin: 0, maxWidth: 320, lineHeight: 1.65, transition: "color 0.45s ease" }}> </p>
           </div>
           <div style={{ height: 1, background: T.divider, marginBottom: 32, transition: "background 0.45s ease" }} />
           {/* Toggle */}
