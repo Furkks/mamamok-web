@@ -96,7 +96,7 @@ const TEAM = [
 const FAQ = [
   { q: "Comment réserver ?",                          a: "Via le bouton Réserver (Zenchef), par téléphone ou par Instagram. Groupes de 6+ : contactez-nous directement." },
   { q: "Y a-t-il des options végétariennes ?",        a: "Oui, plusieurs plats à chaque service, identifiés sur la carte." },
-  { q: "Proposez-vous des adaptations sans gluten ?", a: "Certains plats peuvent être ajustés, signalez-le à la réservation ou à l'arrivée." },
+  { q: "Proposez-vous des adaptations sans gluten ?", a: "Certains plats peuvent être ajustés — signalez-le à la réservation ou à l'arrivée." },
   { q: "Peut-on commander à emporter ?",              a: "Le soir uniquement, sur appel préalable." },
   { q: "Quels modes de paiement acceptez-vous ?",     a: "CB, Visa, Mastercard, American Express et espèces." },
   { q: "Le restaurant est-il accessible PMR ?",       a: "Oui, salle de plain-pied. Contactez-nous pour tout besoin spécifique." },
@@ -338,7 +338,7 @@ export default function App() {
                 globalité.
               </h1>
               <p style={{ color: T.textMuted, fontSize: 15, lineHeight: 1.75, maxWidth: 390, margin: 0, transition: "color 0.45s ease" }}>
-                Une cuisine bistronomique où chaque assiette est associée à un élixir. Précision, fluidité, singularité - un geste signature qui révèle le plat.
+                Une cuisine bistronomique où chaque assiette est associée à un élixir. Précision, fluidité, singularité — un geste signature qui révèle le plat.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                 <button onClick={() => go(menuRef)} style={btn()}>La Carte <ArrowRight size={13} /></button>
@@ -368,7 +368,7 @@ export default function App() {
             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 700, color: CR, margin: 0, lineHeight: 1.1, letterSpacing: "-0.01em" }}>L'Élixir.</h2>
           </div>
           <p style={{ color: "rgba(240,234,216,0.72)", fontSize: 15, lineHeight: 1.78, maxWidth: 540, margin: 0 }}>
-            Ce n'est pas un condiment. Ce n'est pas un cocktail. C'est un concentré de saveurs préparé chaque matin par nos cuisiniers, versé sur l'assiette au moment de servir, il révèle, intensifie, transforme.
+            Ce n'est pas un condiment. Ce n'est pas un cocktail. C'est un concentré de saveurs préparé chaque matin par nos cuisiniers — versé sur l'assiette au moment de servir, il révèle, intensifie, transforme.
           </p>
           <div className="elixir-kw" style={{ display: "flex", gap: 40, flexWrap: "wrap", justifyContent: "center", paddingTop: 4 }}>
             {["Concentré", "Fluidité", "Précision", "Rituel"].map(kw => (
@@ -412,18 +412,19 @@ export default function App() {
         {menuImgUrl[service] ? (
           <div style={{ background: T.bg, padding: "0 28px 48px", transition: "background 0.45s ease" }}>
             <div style={{ maxWidth: 860, margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-              <embed
-                src={`${menuImgUrl[service]}#toolbar=0&navpanes=0&scrollbar=0`}
-                type="application/pdf"
-                style={{
-                  width: "100%",
-                  height: "80vh",
-                  borderRadius: 4,
-                  border: isNight ? "1px solid rgba(240,234,216,0.2)" : `1px solid ${BORDER}`,
-                  boxShadow: isNight ? "0 10px 40px rgba(0,0,0,0.4)" : "0 10px 30px rgba(0,0,0,0.08)",
-                  display: "block",
-                }}
-              />
+              {menuImgUrl[service].includes(".pdf") ? (
+                <embed
+                  src={`${menuImgUrl[service]}#toolbar=0&navpanes=0&scrollbar=0`}
+                  type="application/pdf"
+                  style={{ width: "100%", height: "80vh", borderRadius: 4, display: "block", border: "none" }}
+                />
+              ) : (
+                <img
+                  src={menuImgUrl[service]}
+                  alt={`Carte ${service} Mama Mok`}
+                  style={{ width: "100%", height: "auto", display: "block", borderRadius: 4 }}
+                />
+              )}
               <a href={menuImgUrl[service]} target="_blank" rel="noopener noreferrer"
                 style={{ color: T.textMuted, fontSize: 11, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", borderBottom: `1px solid ${T.border}`, paddingBottom: 2, transition: "color 0.45s" }}>
                 Ouvrir en plein écran <ArrowRight size={11} />
@@ -454,7 +455,7 @@ export default function App() {
                 Créatif, structuré,<br /><em style={{ fontWeight: 400, fontStyle: "italic" }}>jamais rigide.</em>
               </h2>
               <p style={{ color: "rgba(240,234,216,0.68)", fontSize: 15, lineHeight: 1.82, margin: 0 }}>
-                Mama Mok n'est pas un gastro. Ce n'est pas un bistrot ordinaire. C'est un lieu d'expression culinaire avec un geste identitaire, l'élixir, qui prolonge chaque assiette et engage tous les sens.
+                Mama Mok n'est pas un gastro. Ce n'est pas un bistrot ordinaire. C'est un lieu d'expression culinaire avec un geste identitaire — l'élixir — qui prolonge chaque assiette et engage tous les sens.
               </p>
             </div>
             <div className="blockquote" style={{ borderLeft: "1px solid rgba(240,234,216,0.15)", paddingLeft: 36 }}>
