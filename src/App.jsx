@@ -24,7 +24,7 @@ const G2     = "#2e3d22";  // Vert Tropical
 const B      = "#811332";  // Lie de Vin
 const B2     = "#9b163a";  // Bordeaux
 const CR     = "#f0ead8";  // Crème
-const CR2    = "#e2d9c0";  // Crème chaude — moins agressive
+const CR2    = "#e2d9c0";  // Crème chaude
 const MU     = "#6b6a5e";  // Muted
 const BORDER = "#d4cfc0";  // Bordure
 
@@ -136,12 +136,8 @@ function PhotoCarousel() {
       {CAROUSEL_SLIDES.map((s, i) => (
         <div key={i} style={{ position: "absolute", inset: 0, opacity: i === idx ? 1 : 0, transition: "opacity 0.75s ease" }}>
           <img src={s.img} alt={s.label} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(transparent 50%, rgba(24,30,20,0.8))" }} />
         </div>
       ))}
-      <div style={{ position: "absolute", bottom: 44, left: 32 }}>
-        <p style={{ margin: 0, color: CR, fontSize: 11, fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", opacity: 0.8 }}>{CAROUSEL_SLIDES[idx].label}</p>
-      </div>
       <button onClick={prev} aria-label="Précédent" style={{ position: "absolute", left: 14, top: "50%", transform: "translateY(-50%)", background: "rgba(240,234,216,0.15)", border: "none", borderRadius: "50%", width: 34, height: 34, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
         <ChevronLeft size={17} color={CR} />
       </button>
@@ -398,9 +394,8 @@ export default function App() {
       <section ref={menuRef} style={{ background: T.bg, transition: "background 0.45s ease" }}>
         <div style={{ maxWidth: 1160, margin: "0 auto", padding: "80px 28px 0" }}>
           <p style={{ color: B, fontSize: 9, letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700, margin: "0 0 10px" }}>Cuisine & Saison</p>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: 16, marginBottom: 40 }}>
+          <div style={{ marginBottom: 40 }}>
             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 700, color: T.text, margin: 0, transition: "color 0.45s ease" }}>Notre Carte</h2>
-            <p style={{ color: T.textMuted, fontSize: 13, margin: 0, maxWidth: 320, lineHeight: 1.65, transition: "color 0.45s ease" }}>Produits sourcés chaque matin. La carte suit les saisons.</p>
           </div>
           <div style={{ height: 1, background: T.divider, marginBottom: 32, transition: "background 0.45s ease" }} />
           {/* Toggle */}
