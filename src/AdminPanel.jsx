@@ -66,19 +66,18 @@ export default function AdminPanel() {
     setUploading(u => ({ ...u, [service]: true }));
     setFeedback(f => ({ ...f, [service]: null }));
 
-    const fileName = `${FIXED_NAMES[service]}.${ext}`;
+    // Nom unique avec timestamp pour contourner le CDN cache
+    const ts = Date.now();
+    const fileName = `${FIXED_NAMES[service]}-${ts}.${ext}`;
 
-    // Supprime l'ancien fichier si différente extension
-    for (const oldExt of ["pdf", "jpg", "jpeg", "png", "webp"]) {
-      if (oldExt !== ext) {
-        await supabase.storage.from("cartes").remove([`${FIXED_NAMES[service]}.${oldExt}`]);
-      }
-    }
-
-    // Upload avec nom fixe — écrase l'ancien
+    // Upload du fichier carte
     const { error } = await supabase.storage
       .from("cartes")
-      .upload(fileName, file, { upsert: true, contentType: file.type || "application/octet-stream",cacheControl: "1" });
+      .upload(fileName, file, { 
+        upsert: false, 
+        contentType: file.type || "application/octet-stream",
+        cacheControl: "3600"
+      });
 
     if (error) {
       console.error("Upload error:", error);
@@ -87,7 +86,20 @@ export default function AdminPanel() {
       return;
     }
 
-    const publicUrl = getPublicUrl(service, ext);
+    // URL publique du nouveau fichier
+    const { data: urlData } = supabase.storage.from("cartes").getPublicUrl(fileName);
+    const publicUrl = urlData.publicUrl;
+
+    // Écrit le manifest.json avec l'URL courante — no-cache pour que le site lise toujours la version fraîche
+    const manifest = { [service]: publicUrl, updated: ts };
+    const manifestKey = `manifest-${service}.json`;
+    const manifestBlob = new Blob([JSON.stringify(manifest)], { type: "application/json" });
+    await supabase.storage.from("cartes").upload(manifestKey, manifestBlob, { 
+      upsert: true, 
+      contentType: "application/json",
+      cacheControl: "1"
+    });
+
     setCarteUrls(u => ({ ...u, [service]: publicUrl }));
     setFeedback(f => ({ ...f, [service]: "ok" }));
     setUploading(u => ({ ...u, [service]: false }));

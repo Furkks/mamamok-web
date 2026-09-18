@@ -24,7 +24,7 @@ const G2     = "#2e3d22";  // Vert Tropical
 const B      = "#811332";  // Lie de Vin
 const B2     = "#9b163a";  // Bordeaux
 const CR     = "#f0ead8";  // Crème
-const CR2    = "#e8e0cc";  // Crème chaude — moins agressive
+const CR2    = "#ede8d8";  // Crème chaude — moins agressive
 const MU     = "#6b6a5e";  // Muted
 const BORDER = "#d4cfc0";  // Bordure
 
@@ -204,20 +204,20 @@ export default function App() {
     document.head.appendChild(s);
   }, []);
 
-  // Charge les cartes depuis Supabase Storage
+  // Charge les URLs depuis les manifests Supabase — no-cache garanti
   useEffect(() => {
     const SUPA_URL = "https://xscdqxfvrmjlxeilrxnb.supabase.co";
-    const NAMES = { midi: "carte-midi-current", soir: "carte-soir-current" };
     const loadUrls = async () => {
       const imgs = { midi: null, soir: null };
       for (const svc of ["midi", "soir"]) {
-        for (const ext of ["pdf", "jpg", "png"]) {
-          const url = `${SUPA_URL}/storage/v1/object/public/cartes/${NAMES[svc]}.${ext}`;
-          try {
-            const res = await fetch(url, { method: "HEAD" });
-            if (res.ok) { imgs[svc] = `${url}?t=${Date.now()}`; break; }
-          } catch {}
-        }
+        try {
+          const manifestUrl = `${SUPA_URL}/storage/v1/object/public/cartes/manifest-${svc}.json?t=${Date.now()}`;
+          const res = await fetch(manifestUrl, { cache: "no-store" });
+          if (res.ok) {
+            const data = await res.json();
+            if (data[svc]) imgs[svc] = data[svc];
+          }
+        } catch {}
       }
       setImgUrl(imgs);
     };
