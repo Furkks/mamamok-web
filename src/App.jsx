@@ -24,7 +24,7 @@ const G2     = "#2e3d22";  // Vert Tropical
 const B      = "#811332";  // Lie de Vin
 const B2     = "#9b163a";  // Bordeaux
 const CR     = "#f0ead8";  // Crème
-const CR2    = "#ede8d8";  // Crème chaude — moins agressive
+const CR2    = "#e8e0cc";  // Crème chaude — moins agressive
 const MU     = "#6b6a5e";  // Muted
 const BORDER = "#d4cfc0";  // Bordure
 
