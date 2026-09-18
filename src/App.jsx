@@ -338,7 +338,7 @@ export default function App() {
                 globalité.
               </h1>
               <p style={{ color: T.textMuted, fontSize: 15, lineHeight: 1.75, maxWidth: 390, margin: 0, transition: "color 0.45s ease" }}>
-                Une cuisine bistronomique où chaque assiette est associée à un élixir. Précision, fluidité, singularité — un geste signature qui révèle le plat.
+                Une cuisine bistronomique où chaque assiette est associée à un élixir. Précision, fluidité, singularité - un geste signature qui révèle le plat.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                 <button onClick={() => go(menuRef)} style={btn()}>La Carte <ArrowRight size={13} /></button>
