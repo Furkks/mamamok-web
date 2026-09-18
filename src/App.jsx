@@ -24,7 +24,7 @@ const G2     = "#2e3d22";  // Vert Tropical
 const B      = "#811332";  // Lie de Vin
 const B2     = "#9b163a";  // Bordeaux
 const CR     = "#f0ead8";  // Crème
-const CR2    = "#e2d9c0";  // Crème chaude — moins agressive
+const CR2    = "#ede8d8";  // Crème chaude — moins agressive
 const MU     = "#6b6a5e";  // Muted
 const BORDER = "#d4cfc0";  // Bordure
 
@@ -400,7 +400,7 @@ export default function App() {
           <p style={{ color: B, fontSize: 9, letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700, margin: "0 0 10px" }}>Cuisine & Saison</p>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: 16, marginBottom: 40 }}>
             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: 700, color: T.text, margin: 0, transition: "color 0.45s ease" }}>Notre Carte</h2>
-            <p style={{ color: T.textMuted, fontSize: 13, margin: 0, maxWidth: 320, lineHeight: 1.65, transition: "color 0.45s ease" }}> </p>
+            <p style={{ color: T.textMuted, fontSize: 13, margin: 0, maxWidth: 320, lineHeight: 1.65, transition: "color 0.45s ease" }}>Produits sourcés chaque matin. La carte suit les saisons.</p>
           </div>
           <div style={{ height: 1, background: T.divider, marginBottom: 32, transition: "background 0.45s ease" }} />
           {/* Toggle */}
@@ -444,14 +444,8 @@ export default function App() {
           </div>
         )}
 
-        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 28px 80px" }}>
-          <div style={{ padding: "20px 24px", background: T.calloutBg, border: `1px solid ${T.calloutBd}`, borderRadius: 2, display: "flex", flexWrap: "wrap", gap: 16, alignItems: "center", justifyContent: "space-between", transition: "background 0.45s ease, border-color 0.45s ease" }}>
-            <div>
-              <p style={{ margin: "0 0 2px", fontWeight: 700, color: T.text, fontSize: 13, transition: "color 0.45s ease" }}>Carte des vins & élixirs</p>
-              <p style={{ margin: 0, color: T.textMuted, fontSize: 12, transition: "color 0.45s ease" }}>Disponible à table ou sur demande.</p>
-            </div>
-            <button onClick={openZenchef} style={btn()}>Réserver une table</button>
-          </div>
+        <div style={{ maxWidth: 1160, margin: "0 auto", padding: "0 28px 80px", textAlign: "center" }}>
+          <button onClick={openZenchef} style={btn()}>Réserver une table</button>
         </div>
       </section>
 
