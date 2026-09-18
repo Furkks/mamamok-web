@@ -338,7 +338,7 @@ export default function App() {
                 globalité.
               </h1>
               <p style={{ color: T.textMuted, fontSize: 15, lineHeight: 1.75, maxWidth: 390, margin: 0, transition: "color 0.45s ease" }}>
-                Une cuisine bistronomique où chaque assiette est associée à un élixir. Précision, fluidité, singularité — un geste signature qui révèle le plat.
+                Une cuisine bistronomique où chaque assiette est associée à un élixir. Précision, fluidité, singularité, un geste signature qui révèle le plat.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                 <button onClick={() => go(menuRef)} style={btn()}>La Carte <ArrowRight size={13} /></button>
@@ -368,7 +368,7 @@ export default function App() {
             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 700, color: CR, margin: 0, lineHeight: 1.1, letterSpacing: "-0.01em" }}>L'Élixir.</h2>
           </div>
           <p style={{ color: "rgba(240,234,216,0.72)", fontSize: 15, lineHeight: 1.78, maxWidth: 540, margin: 0 }}>
-            Ce n'est pas un condiment. Ce n'est pas un cocktail. C'est un concentré de saveurs préparé chaque matin par nos cuisiniers — versé sur l'assiette au moment de servir, il révèle, intensifie, transforme.
+            Ce n'est pas un condiment. Ce n'est pas un cocktail. C'est un concentré de saveurs préparé chaque matin par nos cuisiniers, versé sur l'assiette au moment de servir, il révèle, intensifie, transforme.
           </p>
           <div className="elixir-kw" style={{ display: "flex", gap: 40, flexWrap: "wrap", justifyContent: "center", paddingTop: 4 }}>
             {["Concentré", "Fluidité", "Précision", "Rituel"].map(kw => (
@@ -455,7 +455,7 @@ export default function App() {
                 Créatif, structuré,<br /><em style={{ fontWeight: 400, fontStyle: "italic" }}>jamais rigide.</em>
               </h2>
               <p style={{ color: "rgba(240,234,216,0.68)", fontSize: 15, lineHeight: 1.82, margin: 0 }}>
-                Mama Mok n'est pas un gastro. Ce n'est pas un bistrot ordinaire. C'est un lieu d'expression culinaire avec un geste identitaire — l'élixir — qui prolonge chaque assiette et engage tous les sens.
+                Mama Mok n'est pas un gastro. Ce n'est pas un bistrot ordinaire. C'est un lieu d'expression culinaire avec un geste identitaire, l'élixir, qui prolonge chaque assiette et engage tous les sens.
               </p>
             </div>
             <div className="blockquote" style={{ borderLeft: "1px solid rgba(240,234,216,0.15)", paddingLeft: 36 }}>
@@ -519,7 +519,7 @@ export default function App() {
               <h3 style={{ fontFamily: "Georgia, serif", fontSize: 17, fontWeight: 700, color: G, margin: "0 0 14px", display: "flex", alignItems: "center", gap: 8 }}><Clock size={17} color={B} /> Horaires</h3>
               {HOURS.map(h => (
                 <div key={h.service} style={{ padding: "8px 0", borderBottom: `1px solid ${BORDER}` }}>
-                  <div style={{ fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.06em", color: G }}>{h.service} — {h.days}</div>
+                  <div style={{ fontWeight: 700, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.06em", color: G }}>{h.service} - {h.days}</div>
                   <div style={{ color: MU, fontSize: 13, marginTop: 2 }}>{h.time}</div>
                 </div>
               ))}
@@ -577,7 +577,14 @@ export default function App() {
         </div>
         {/* Barre basse — mentions légales + admin */}
         <div style={{ maxWidth: 1160, margin: "20px auto 0", paddingTop: 16, borderTop: "1px solid rgba(240,234,216,0.1)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <span style={{ color: "rgba(240,234,216,0.22)", fontSize: 11 }}>© {new Date().getFullYear()} SAS MAMAMOK · Tous droits réservés</span>
+        {/* Barre basse - mentions légales */}
+        <div style={{ maxWidth: 1160, margin: "16px auto 0", paddingTop: 16, borderTop: "1px solid rgba(240,234,216,0.1)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
+          <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
+            <span style={{ color: "rgba(240,234,216,0.22)", fontSize: 11 }}>© {new Date().getFullYear()} SAS MAMAMOK · Tous droits réservés</span>
+            <a href="/mentions-legales" style={{ color: "rgba(240,234,216,0.35)", fontSize: 11, textDecoration: "none" }}>Mentions légales</a>
+            <a href="/cgv" style={{ color: "rgba(240,234,216,0.35)", fontSize: 11, textDecoration: "none" }}>CGV</a>
+          </div>
+        </div>
         </div>
       </footer>
 
