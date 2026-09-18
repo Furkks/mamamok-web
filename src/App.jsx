@@ -24,7 +24,7 @@ const G2     = "#2e3d22";  // Vert Tropical
 const B      = "#811332";  // Lie de Vin
 const B2     = "#9b163a";  // Bordeaux
 const CR     = "#f0ead8";  // Crème
-const CR2    = "#f5f0e4";  // Crème légère
+const CR2    = "#ede8d8";  // Crème chaude — moins agressive
 const MU     = "#6b6a5e";  // Muted
 const BORDER = "#d4cfc0";  // Bordure
 
@@ -89,9 +89,9 @@ const HOURS = [
   { service: "Fermé",    days: "Dim – Lun", time: "—" },
 ];
 const TEAM = [
-  { name: "Manon", role: "Co-fondatrice",         img: IMG.manon, quote: "L'ambiance, c'est ma signature." },
-  { name: "Matt",  role: "Co-fondateur & Cuisine",img: IMG.matt,  quote: "Chaque assiette est une décision." },
-  { name: "Moké",  role: "Co-fondateur & Créations", img: IMG.moke, quote: "L'élixir, c'est le geste qui révèle." },
+  { name: "Manon", role: "", img: IMG.manon, quote: "L'ambiance, c'est ma signature." },
+  { name: "Matt",  role: "", img: IMG.matt,  quote: "Chaque assiette est une décision." },
+  { name: "Moké",  role: "", img: IMG.moke,  quote: "L'élixir, c'est le geste qui révèle." },
 ];
 const FAQ = [
   { q: "Comment réserver ?",                          a: "Via le bouton Réserver (Zenchef), par téléphone ou par Instagram. Groupes de 6+ : contactez-nous directement." },
@@ -354,9 +354,6 @@ export default function App() {
                 <a href="https://www.instagram.com/mamamok.restaurant" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textMuted, fontSize: 11, textDecoration: "none", fontWeight: 600, letterSpacing: "0.07em", transition: "color 0.45s" }}>
                   <Instagram size={14} color={T.text} /> @mamamok.restaurant
                 </a>
-                <a href="mailto:bonjour@mamamok.fr" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textMuted, fontSize: 11, textDecoration: "none", fontWeight: 600, letterSpacing: "0.07em", transition: "color 0.45s" }}>
-                  <Mail size={14} color={T.text} /> Contact
-                </a>
               </div>
             </div>
           </div>
@@ -504,7 +501,7 @@ export default function App() {
           <p style={{ fontFamily: "Georgia, serif", fontSize: "clamp(24px, 4vw, 44px)", fontWeight: 700, color: CR, lineHeight: 1.12, margin: 0 }}>
             Poussez la porte du<br />36 Rue Saint-Georges.
           </p>
-          <p style={{ color: "rgba(240,234,216,0.65)", fontSize: 15, lineHeight: 1.72, margin: 0 }}>Sur place ou à emporter. Au cœur du quartier historique de Rennes.</p>
+          <p style={{ color: "rgba(240,234,216,0.65)", fontSize: 15, lineHeight: 1.72, margin: 0 }}>Au cœur du quartier historique de Rennes.</p>
           <button onClick={openZenchef}
             onMouseEnter={e => { e.currentTarget.style.background = CR; e.currentTarget.style.color = G; }}
             onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = CR; }}
@@ -540,15 +537,14 @@ export default function App() {
             <div>
               <h3 style={{ fontFamily: "Georgia, serif", fontSize: 17, fontWeight: 700, color: G, margin: "0 0 14px", display: "flex", alignItems: "center", gap: 8 }}><Phone size={17} color={B} /> Contact</h3>
               <p style={{ color: MU, fontSize: 14, lineHeight: 1.78, margin: "0 0 20px" }}>
-                <a href="tel:+33223203564" style={{ color: MU, textDecoration: "none" }}>02 23 20 35 64</a><br />
-                <a href="mailto:mamamokrestaurant@gmail.com" style={{ color: MU, textDecoration: "none" }}>mamamokrestaurant@gmail.com</a>
+                <a href="tel:+33223203564" style={{ color: MU, textDecoration: "none" }}>02 23 20 35 64</a>
               </p>
               <div style={{ display: "flex", gap: 10 }}>
                 <a href="https://www.instagram.com/mamamok.restaurant" target="_blank" rel="noopener noreferrer" style={{ background: G, color: CR, border: "none", borderRadius: 2, padding: "9px 16px", fontWeight: 700, fontSize: 10, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "0.09em", textTransform: "uppercase" }}>
                   <Instagram size={12} color={CR} /> Instagram
                 </a>
-                <a href="mailto:mamamokrestaurant@gmail.com" style={{ background: "transparent", color: G, border: `1.5px solid ${G}`, borderRadius: 2, padding: "9px 16px", fontWeight: 700, fontSize: 10, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "0.09em", textTransform: "uppercase" }}>
-                  <Mail size={12} /> Email
+                <a href="tel:+33223203564" style={{ background: "transparent", color: G, border: `1.5px solid ${G}`, borderRadius: 2, padding: "9px 16px", fontWeight: 700, fontSize: 10, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 6, letterSpacing: "0.09em", textTransform: "uppercase" }}>
+                  <Phone size={12} /> Appeler
                 </a>
               </div>
             </div>
@@ -584,8 +580,8 @@ export default function App() {
             <a href="https://www.instagram.com/mamamok.restaurant" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(240,234,216,0.4)", textDecoration: "none", display: "flex", alignItems: "center", gap: 6, fontSize: 11, fontWeight: 600, letterSpacing: "0.08em" }}>
               <Instagram size={15} /> Instagram
             </a>
-            <a href="mailto:mamamokrestaurant@gmail.com" style={{ color: "rgba(240,234,216,0.4)", textDecoration: "none", display: "flex", alignItems: "center", gap: 6, fontSize: 11, fontWeight: 600, letterSpacing: "0.08em" }}>
-              <Mail size={15} /> Email
+            <a href="tel:+33223203564" style={{ color: "rgba(240,234,216,0.4)", textDecoration: "none", display: "flex", alignItems: "center", gap: 6, fontSize: 11, fontWeight: 600, letterSpacing: "0.08em" }}>
+              <Phone size={15} /> 02 23 20 35 64
             </a>
           </div>
         </div>
@@ -593,8 +589,8 @@ export default function App() {
         <div style={{ maxWidth: 1160, margin: "20px auto 0", paddingTop: 16, borderTop: "1px solid rgba(240,234,216,0.1)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
           <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
             <span style={{ color: "rgba(240,234,216,0.22)", fontSize: 11 }}>© {new Date().getFullYear()} Mama Mok · Tous droits réservés</span>
-            <a href="https://labrickrouge.fr/" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(240,234,216,0.35)", fontSize: 11, textDecoration: "none" }}>Mentions légales</a>
-            <a href="https://labrickrouge.fr/" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(240,234,216,0.35)", fontSize: 11, textDecoration: "none" }}>CGV</a>
+            <a href="/mentions-legales" style={{ color: "rgba(240,234,216,0.35)", fontSize: 11, textDecoration: "none" }}>Mentions légales</a>
+            <a href="/cgv" style={{ color: "rgba(240,234,216,0.35)", fontSize: 11, textDecoration: "none" }}>CGV</a>
           </div>
           <a href="/admin" style={{ color: "rgba(240,234,216,0.25)", fontSize: 10, textDecoration: "none", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, border: "1px solid rgba(240,234,216,0.12)", borderRadius: 2, padding: "4px 10px" }}>Admin</a>
         </div>
