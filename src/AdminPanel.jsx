@@ -78,7 +78,7 @@ export default function AdminPanel() {
     // Upload avec nom fixe — écrase l'ancien
     const { error } = await supabase.storage
       .from("cartes")
-      .upload(fileName, file, { upsert: true, contentType: file.type || "application/octet-stream" });
+      .upload(fileName, file, { upsert: true, contentType: file.type || "application/octet-stream",cacheControl: "1" });
 
     if (error) {
       console.error("Upload error:", error);
