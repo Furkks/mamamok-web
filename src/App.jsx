@@ -587,12 +587,7 @@ export default function App() {
         </div>
         {/* Barre basse — mentions légales + admin */}
         <div style={{ maxWidth: 1160, margin: "20px auto 0", paddingTop: 16, borderTop: "1px solid rgba(240,234,216,0.1)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <div style={{ display: "flex", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
-            <span style={{ color: "rgba(240,234,216,0.22)", fontSize: 11 }}>© {new Date().getFullYear()} Mama Mok · Tous droits réservés</span>
-            <a href="/mentions-legales" style={{ color: "rgba(240,234,216,0.35)", fontSize: 11, textDecoration: "none" }}>Mentions légales</a>
-            <a href="/cgv" style={{ color: "rgba(240,234,216,0.35)", fontSize: 11, textDecoration: "none" }}>CGV</a>
-          </div>
-          <a href="/admin" style={{ color: "rgba(240,234,216,0.25)", fontSize: 10, textDecoration: "none", letterSpacing: "0.12em", textTransform: "uppercase", fontWeight: 600, border: "1px solid rgba(240,234,216,0.12)", borderRadius: 2, padding: "4px 10px" }}>Admin</a>
+          <span style={{ color: "rgba(240,234,216,0.22)", fontSize: 11 }}>© {new Date().getFullYear()} SAS MAMAMOK · Tous droits réservés</span>
         </div>
       </footer>
 
