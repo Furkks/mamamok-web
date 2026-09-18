@@ -454,7 +454,7 @@ export default function App() {
                 Créatif, structuré,<br /><em style={{ fontWeight: 400, fontStyle: "italic" }}>jamais rigide.</em>
               </h2>
               <p style={{ color: "rgba(240,234,216,0.68)", fontSize: 15, lineHeight: 1.82, margin: 0 }}>
-                Mama Mok n'est pas un gastro. Ce n'est pas un bistrot ordinaire. C'est un lieu d'expression culinaire avec un geste identitaire — l'élixir — qui prolonge chaque assiette et engage tous les sens.
+                Mama Mok n'est pas un gastro. Ce n'est pas un bistrot ordinaire. C'est un lieu d'expression culinaire avec un geste identitaire, l'élixir, qui prolonge chaque assiette et engage tous les sens.
               </p>
             </div>
             <div className="blockquote" style={{ borderLeft: "1px solid rgba(240,234,216,0.15)", paddingLeft: 36 }}>
