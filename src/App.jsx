@@ -94,12 +94,11 @@ const TEAM = [
   { name: "Moké",  role: "", img: IMG.moke,  quote: "L'élixir, c'est le geste qui révèle." },
 ];
 const FAQ = [
+  { q: "Le restaurant est-il accessible PMR ?",       a: "Oui, salle de plain-pied. Contactez-nous pour tout besoin spécifique." },
   { q: "Comment réserver ?",                          a: "Via le bouton Réserver (Zenchef), par téléphone ou par Instagram. Groupes de 6+ : contactez-nous directement." },
   { q: "Y a-t-il des options végétariennes ?",        a: "Oui, plusieurs plats à chaque service, identifiés sur la carte." },
   { q: "Proposez-vous des adaptations sans gluten ?", a: "Certains plats peuvent être ajustés — signalez-le à la réservation ou à l'arrivée." },
-  { q: "Peut-on commander à emporter ?",              a: "Le soir uniquement, sur appel préalable." },
   { q: "Quels modes de paiement acceptez-vous ?",     a: "CB, Visa, Mastercard, American Express et espèces." },
-  { q: "Le restaurant est-il accessible PMR ?",       a: "Oui, salle de plain-pied. Contactez-nous pour tout besoin spécifique." },
 ];
 
 
@@ -342,9 +341,6 @@ export default function App() {
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                 <button onClick={() => go(menuRef)} style={btn()}>La Carte <ArrowRight size={13} /></button>
-                <button onClick={openZenchef} style={{ background: "transparent", color: T.text, border: `1.5px solid ${T.text}`, borderRadius: 2, padding: "10px 22px", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", cursor: "pointer", fontFamily: "inherit", transition: "color 0.45s ease, border-color 0.45s ease" }}>
-                  Réserver
-                </button>
               </div>
               <div style={{ display: "flex", gap: 20, paddingTop: 4 }}>
                 <a href="https://www.instagram.com/mamamok.restaurant" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textMuted, fontSize: 11, textDecoration: "none", fontWeight: 600, letterSpacing: "0.07em", transition: "color 0.45s" }}>
@@ -403,7 +399,7 @@ export default function App() {
             {["midi", "soir"].map(s => (
               <button key={s} onClick={() => setService(s)}
                 style={{ padding: "10px 32px", fontWeight: 700, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", border: "none", background: service === s ? (s === "soir" ? "#0d1109" : G) : "transparent", color: service === s ? CR : T.textMuted, fontFamily: "inherit", transition: "all 0.3s" }}>
-                {s === "midi" ? "☀️  Midi" : "🌙  Soir"}
+                {s === "midi" ? "Midi" : "Soir"}
               </button>
             ))}
           </div>
@@ -593,7 +589,7 @@ export default function App() {
         <button className="mm-fab-in" onClick={openZenchef} aria-label="Réserver une table au restaurant Mama Mok"
           onMouseEnter={e => { e.currentTarget.style.background = B2; e.currentTarget.style.transform = "translateY(-2px)"; }}
           onMouseLeave={e => { e.currentTarget.style.background = B; e.currentTarget.style.transform = "translateY(0)"; }}
-          style={{ position: "fixed", bottom: 24, right: 24, zIndex: 150, background: B, color: CR2, border: "none", borderRadius: 40, padding: "13px 22px", display: "flex", alignItems: "center", gap: 9, fontSize: 11, fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", cursor: "pointer", boxShadow: "0 4px 20px rgba(129,19,50,0.4)", fontFamily: "inherit", transition: "background 0.2s, transform 0.2s" }}>
+          style={{ position: "fixed", bottom: 24, right: 24, zIndex: 150, background: B, color: CR2, border: "none", borderRadius: 40, padding: "16px 30px", display: "flex", alignItems: "center", gap: 9, fontSize: 13, fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", cursor: "pointer", boxShadow: "0 6px 28px rgba(129,19,50,0.45)", fontFamily: "inherit", transition: "background 0.2s, transform 0.2s" }}>
           
           Réserver
         </button>
