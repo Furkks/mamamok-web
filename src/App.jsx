@@ -218,28 +218,28 @@ export default function App() {
 
   const go = (ref) => { setMob(false); setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80); };
 
-  // Zenchef — chargé et ouvert uniquement au clic
-  const openZenchef = () => {
-    if (document.getElementById("zenchef-sdk")) {
-      if (window.ZenchefSDK) window.ZenchefSDK.open();
-      return;
+  // Zenchef — chargé au montage, bouton natif toujours visible, ouverture au clic
+  useEffect(() => {
+    if (document.getElementById("zenchef-sdk")) return;
+    // Injecte la config avec data-open="0" → bouton visible mais widget fermé
+    if (!document.getElementById("zc-config")) {
+      const div = document.createElement("div");
+      div.id = "zc-config";
+      div.className = "zc-widget-config";
+      div.setAttribute("data-restaurant", "387411");
+      div.setAttribute("data-open", "0");
+      document.body.appendChild(div);
     }
     const script = document.createElement("script");
     script.id = "zenchef-sdk";
     script.src = "https://sdk.zenchef.com/v1/sdk.min.js";
-    script.onload = () => {
-      // Injecte la config seulement après le clic, pas au chargement
-      if (!document.getElementById("zc-config")) {
-        const div = document.createElement("div");
-        div.id = "zc-config";
-        div.className = "zc-widget-config";
-        div.setAttribute("data-restaurant", "387411");
-        div.setAttribute("data-open", "0");
-        document.body.appendChild(div);
-      }
-      setTimeout(() => { if (window.ZenchefSDK) window.ZenchefSDK.open(); }, 500);
-    };
     document.head.appendChild(script);
+  }, []);
+
+  const openZenchef = () => {
+    if (window.ZenchefSDK) { window.ZenchefSDK.open(); return; }
+    // SDK pas encore prêt (rare) — attend 600ms et réessaie
+    setTimeout(() => { if (window.ZenchefSDK) window.ZenchefSDK.open(); }, 600);
   };
 
   const NAV = [
@@ -285,6 +285,8 @@ export default function App() {
           .pdf-embed{display:none !important}
         }
         @media(min-width:801px){ #mob-btn{display:none !important} #desk-nav{display:flex !important} }
+        /* Zenchef — bouton natif légèrement réduit */
+        .zc-widget-button { transform: scale(0.82) !important; transform-origin: bottom right !important; }
       `}</style>
 
 
