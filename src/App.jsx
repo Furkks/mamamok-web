@@ -78,7 +78,6 @@ const CAROUSEL_SLIDES = [
   { img: "/salle.png",       label: "L'ambiance" },
   { img: "/cok.png",         label: "L'ambiance" },
   { img: IMG.drinks,         label: "Carte des vins" },
-  { img: "/salle.png",       label: "L'Élixir en action" },
 ];
 
 const MENU_IMG_URL_DEFAULT = { midi: null, soir: null };
@@ -94,11 +93,10 @@ const TEAM = [
   { name: "Moké",  role: "", img: IMG.moke,  quote: "L'élixir, c'est le geste qui révèle." },
 ];
 const FAQ = [
-  { q: "Le restaurant est-il accessible PMR ?",       a: "Oui, salle de plain-pied. Contactez-nous pour tout besoin spécifique." },
-  { q: "Comment réserver ?",                          a: "Via le bouton Réserver (Zenchef), par téléphone ou par Instagram. Groupes de 6+ : contactez-nous directement." },
-  { q: "Y a-t-il des options végétariennes ?",        a: "Oui, plusieurs plats à chaque service, identifiés sur la carte." },
-  { q: "Proposez-vous des adaptations sans gluten ?", a: "Certains plats peuvent être ajustés — signalez-le à la réservation ou à l'arrivée." },
-  { q: "Quels modes de paiement acceptez-vous ?",     a: "CB, Visa, Mastercard, American Express et espèces." },
+  { q: "Le restaurant est-il accessible PMR ?",   a: "Oui, salle de plain-pied. Contactez-nous pour tout besoin spécifique." },
+  { q: "Comment réserver ?",                      a: "Via le bouton Réserver (Zenchef) ou par téléphone. Pour les groupes de plus de 10 personnes, contactez-nous directement." },
+  { q: "Y a-t-il des options végétariennes ?",    a: "Oui, chaque entrée et chaque plat dispose d'une option végétarienne, identifiée sur la carte." },
+  { q: "Quels modes de paiement acceptez-vous ?", a: "CB, Visa, Mastercard, American Express, espèces et carte ticket restaurant (carte uniquement, pas le ticket papier)." },
 ];
 
 
@@ -172,7 +170,6 @@ export default function App() {
   const [mob, setMob]           = useState(false);
   const [scrolled, setSc]       = useState(false);
   const [service, setService]   = useState("midi");
-  const [fabVisible, setFab]    = useState(false);
   const [menuImgUrl, setImgUrl] = useState(MENU_IMG_URL_DEFAULT);
 
   const isNight = service === "soir";
@@ -185,7 +182,7 @@ export default function App() {
   const NAV_H = 66;
 
   useEffect(() => {
-    const fn = () => { setSc(window.scrollY > 40); setFab((heroRef.current?.getBoundingClientRect().bottom ?? 0) < 0); };
+    const fn = () => { setSc(window.scrollY > 40); };
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
@@ -341,6 +338,9 @@ export default function App() {
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                 <button onClick={() => go(menuRef)} style={btn()}>La Carte <ArrowRight size={13} /></button>
+                <button onClick={openZenchef} style={{ background: "transparent", color: T.text, border: `1.5px solid ${T.text}`, borderRadius: 2, padding: "10px 22px", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", cursor: "pointer", fontFamily: "inherit", transition: "color 0.45s ease, border-color 0.45s ease" }}>
+                  Réserver
+                </button>
               </div>
               <div style={{ display: "flex", gap: 20, paddingTop: 4 }}>
                 <a href="https://www.instagram.com/mamamok.restaurant" target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 6, color: T.textMuted, fontSize: 11, textDecoration: "none", fontWeight: 600, letterSpacing: "0.07em", transition: "color 0.45s" }}>
@@ -488,12 +488,6 @@ export default function App() {
             Poussez la porte du<br />36 Rue Saint-Georges.
           </p>
           <p style={{ color: "rgba(240,234,216,0.65)", fontSize: 15, lineHeight: 1.72, margin: 0 }}>Au cœur du quartier historique de Rennes.</p>
-          <button onClick={openZenchef}
-            onMouseEnter={e => { e.currentTarget.style.background = CR; e.currentTarget.style.color = G; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = CR; }}
-            style={{ marginTop: 4, background: "transparent", color: CR, border: "1.5px solid rgba(240,234,216,0.45)", borderRadius: 2, padding: "12px 28px", fontWeight: 700, fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase", cursor: "pointer", fontFamily: "inherit", transition: "background 0.2s, color 0.2s" }}>
-            Réserver une table
-          </button>
         </div>
       </section>
 
@@ -584,16 +578,6 @@ export default function App() {
         </div>
       </footer>
 
-      {/* ── FAB ── */}
-      {fabVisible && (
-        <button className="mm-fab-in" onClick={openZenchef} aria-label="Réserver une table au restaurant Mama Mok"
-          onMouseEnter={e => { e.currentTarget.style.background = B2; e.currentTarget.style.transform = "translateY(-2px)"; }}
-          onMouseLeave={e => { e.currentTarget.style.background = B; e.currentTarget.style.transform = "translateY(0)"; }}
-          style={{ position: "fixed", bottom: 24, right: 24, zIndex: 150, background: B, color: CR2, border: "none", borderRadius: 40, padding: "16px 30px", display: "flex", alignItems: "center", gap: 9, fontSize: 13, fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase", cursor: "pointer", boxShadow: "0 6px 28px rgba(129,19,50,0.45)", fontFamily: "inherit", transition: "background 0.2s, transform 0.2s" }}>
-          
-          Réserver
-        </button>
-      )}
     </div>
   );
 }
