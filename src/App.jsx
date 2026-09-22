@@ -218,10 +218,13 @@ export default function App() {
 
   const go = (ref) => { setMob(false); setTimeout(() => ref.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80); };
 
-  // Zenchef — chargé au montage, bouton natif toujours visible, ouverture au clic
-  useEffect(() => {
-    if (document.getElementById("zenchef-sdk")) return;
-    // Injecte la config avec data-open="0" → bouton visible mais widget fermé
+  // Zenchef — chargé uniquement au clic, jamais au montage
+  const openZenchef = () => {
+    if (document.getElementById("zenchef-sdk")) {
+      if (window.ZenchefSDK) window.ZenchefSDK.open();
+      else setTimeout(() => { if (window.ZenchefSDK) window.ZenchefSDK.open(); }, 600);
+      return;
+    }
     if (!document.getElementById("zc-config")) {
       const div = document.createElement("div");
       div.id = "zc-config";
@@ -233,13 +236,8 @@ export default function App() {
     const script = document.createElement("script");
     script.id = "zenchef-sdk";
     script.src = "https://sdk.zenchef.com/v1/sdk.min.js";
+    script.onload = () => setTimeout(() => { if (window.ZenchefSDK) window.ZenchefSDK.open(); }, 500);
     document.head.appendChild(script);
-  }, []);
-
-  const openZenchef = () => {
-    if (window.ZenchefSDK) { window.ZenchefSDK.open(); return; }
-    // SDK pas encore prêt (rare) — attend 600ms et réessaie
-    setTimeout(() => { if (window.ZenchefSDK) window.ZenchefSDK.open(); }, 600);
   };
 
   const NAV = [
@@ -285,8 +283,8 @@ export default function App() {
           .pdf-embed{display:none !important}
         }
         @media(min-width:801px){ #mob-btn{display:none !important} #desk-nav{display:flex !important} }
-        /* Zenchef — bouton natif légèrement réduit */
-        .zc-widget-button { transform: scale(0.82) !important; transform-origin: bottom right !important; }
+        /* Masque le bouton natif Zenchef — on utilise notre propre FAB */
+        .zc-widget-button { display: none !important; }
       `}</style>
 
 
@@ -579,6 +577,15 @@ export default function App() {
         </div>
         </div>
       </footer>
+
+      {/* ── FAB ZENCHEF — toujours visible, rectangle, style Z ── */}
+      <button onClick={openZenchef} aria-label="Réserver une table"
+        onMouseEnter={e => e.currentTarget.style.opacity = "0.88"}
+        onMouseLeave={e => e.currentTarget.style.opacity = "1"}
+        style={{ position: "fixed", bottom: 20, right: 20, zIndex: 150, background: B, color: CR, border: "none", borderRadius: 6, padding: "11px 18px", display: "flex", alignItems: "center", gap: 8, fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", cursor: "pointer", boxShadow: "0 4px 18px rgba(129,19,50,0.35)", fontFamily: "inherit", transition: "opacity 0.2s" }}>
+        <span style={{ fontFamily: "Georgia, serif", fontSize: 15, fontWeight: 700, lineHeight: 1 }}>Z</span>
+        Réserver une table
+      </button>
 
     </div>
   );
