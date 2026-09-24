@@ -364,10 +364,10 @@ export default function App() {
             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 46px)", fontWeight: 700, color: CR, margin: 0, lineHeight: 1.1, letterSpacing: "-0.01em" }}>L'Élixir.</h2>
           </div>
           <p style={{ color: "rgba(240,234,216,0.72)", fontSize: 15, lineHeight: 1.78, maxWidth: 540, margin: 0 }}>
-            Ce n'est pas un condiment. Ce n'est pas un cocktail. C'est un concentré de saveurs préparé chaque matin par nos cuisiniers, versé sur l'assiette au moment de servir, il révèle, intensifie, transforme.
+            Un plat. Un élixir. Une même réflexion. L'élixir reprend un élément du plat et le transforme en liquide pour créer un nouveau dialogue avec celui-ci. Saveurs, textures et sensations se répondent pour composer une expérience pensée dans son ensemble, entre précision, cohérence et surprise.
           </p>
           <div className="elixir-kw" style={{ display: "flex", gap: 40, flexWrap: "wrap", justifyContent: "center", paddingTop: 4 }}>
-            {["Concentré", "Fluidité", "Précision", "Rituel"].map(kw => (
+            {["Prolongement", "Expérience", "Découverte"].map(kw => (
               <div key={kw} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
                 <span style={{ fontFamily: "Georgia, serif", fontSize: "clamp(18px, 3vw, 28px)", fontWeight: 700, color: CR }}>{kw}</span>
                 <div style={{ width: 4, height: 4, borderRadius: "50%", background: B2 }} />
