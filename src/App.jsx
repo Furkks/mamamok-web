@@ -334,7 +334,7 @@ export default function App() {
                 globalité.
               </h1>
               <p style={{ color: T.textMuted, fontSize: 15, lineHeight: 1.75, maxWidth: 390, margin: 0, transition: "color 0.45s ease" }}>
-                Une cuisine bistronomique où chaque assiette est associée à un élixir. Précision, fluidité, singularité, un geste signature qui révèle le plat.
+                Mamamok, Maison de goût et de découverte où chaque met discute avec son élixir.
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
                 <button onClick={() => go(menuRef)} style={btn()}>La Carte <ArrowRight size={13} /></button>
@@ -446,12 +446,12 @@ export default function App() {
         <div className="sp" style={{ padding: "80px 28px", maxWidth: 1160, margin: "0 auto" }}>
           <div className="team-intro" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 56, alignItems: "center", marginBottom: 72 }}>
             <div>
-              <p style={{ color: "rgba(240,234,216,0.45)", fontSize: 9, letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700, margin: "0 0 14px" }}>L'Esprit Mama Mok</p>
+              <p style={{ color: "rgba(240,234,216,0.45)", fontSize: 9, letterSpacing: "0.24em", textTransform: "uppercase", fontWeight: 700, margin: "0 0 14px" }}>L'Esprit MAMAMOK</p>
               <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(26px, 4vw, 42px)", fontWeight: 700, color: CR, lineHeight: 1.12, margin: "0 0 20px" }}>
                 Créatif, structuré,<br /><em style={{ fontWeight: 400, fontStyle: "italic" }}>jamais rigide.</em>
               </h2>
               <p style={{ color: "rgba(240,234,216,0.68)", fontSize: 15, lineHeight: 1.82, margin: 0 }}>
-                Mama Mok n'est pas un gastro. Ce n'est pas un bistrot ordinaire. C'est un lieu d'expression culinaire avec un geste identitaire, l'élixir, qui prolonge chaque assiette et engage tous les sens.
+                Une fusion entre trois associés, avec une direction commune. Une cuisine libre, des accords assumés, une expérience pensée dans son ensemble, portée par une volonté de créativité.
               </p>
             </div>
             <div className="blockquote" style={{ borderLeft: "1px solid rgba(240,234,216,0.15)", paddingLeft: 36 }}>
