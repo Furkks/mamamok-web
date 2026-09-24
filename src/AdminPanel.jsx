@@ -9,7 +9,7 @@ const supabase  = createClient(SUPA_URL, SUPA_ANON);
 // Noms de fichiers fixes — l'URL ne change jamais, le contenu change
 const FIXED_NAMES = { midi: "carte-midi-current", soir: "carte-soir-current" };
 
-const ADMIN_PASSWORD = "mamamok2024";
+const ADMIN_PASSWORD = "mamamok2026";
 
 const G = "#3A3F2E"; const B = "#811332"; const CR = "#D8D2C4";
 const CR2 = "#EDE8DB"; const MU = "#7A7565"; const BORDER = "#C8C2B0";
