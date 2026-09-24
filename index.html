@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/logo-mamamok.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+<meta charset="UTF-8" />
+<link rel="icon" type="image/png" href="/logo-mamamok.png" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Titre & Description -->
-    <title>Mama Mok | Restaurant Bistronomique à Rennes Centre</title>
-    <meta name="description" content="Découvrez Mama Mok, restaurant bistronomique au cœur du quartier historique de Rennes (12 Rue de la Psalette). Cuisine de cœur, produits frais et saveurs méditerranéennes." />
-    <meta name="keywords" content="restaurant rennes, bistrot rennes, restaurant bistronomique rennes, mama mok, rue de la psalette, où manger rennes center" />
+<!-- Google Search Console -->
+<meta name="google-site-verification" content="RLZYvra8arE7wkX9Im_zC5RIs77XQlc6CjhopbGVa8k" />
 
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="restaurant" />
-    <meta property="og:title" content="Mama Mok | Restaurant Bistronomique · Rennes" />
-    <meta property="og:description" content="Cuisine de cœur, sans chichis. Réservez votre table au 12 Rue de la Psalette à Rennes." />
-    <meta property="og:image" content="/logo-mamamok.png" />
+<!-- SEO Titre & Description -->
+<title>Mama Mok | Restaurant Bistronomique à Rennes Centre</title>
+<meta name="description" content="Découvrez Mama Mok, restaurant bistronomique au cœur du quartier historique de Rennes (36 Rue Saint-Georges). Cuisine de goût, élixirs signature et accords assumés." />
+<meta name="keywords" content="restaurant rennes, bistrot rennes, restaurant bistronomique rennes, mama mok, rue saint-georges, où manger rennes centre" />
 
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Restaurant",
-        "name": "Mama Mok",
-        "image": "https://mamamok.fr/logo-mamamok.png",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "12 Rue de la Psalette",
-          "addressLocality": "Rennes",
-          "postalCode": "35000",
-          "addressCountry": "FR"
-        },
-        "url": "https://mamamok.fr",
-        "servesCuisine": ["Bistronomique", "Méditerranéenne"]
-      }
-    </script>
-  </head>
-  <body>
-    <!-- Le point d'ancrage OBLIGATOIRE de React -->
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!-- Open Graph / Social Media -->
+<meta property="og:type" content="restaurant" />
+<meta property="og:title" content="Mama Mok | Restaurant Bistronomique · Rennes" />
+<meta property="og:description" content="Maison de goût et de découverte où chaque met discute avec son élixir. Réservez votre table au 36 Rue Saint-Georges à Rennes." />
+<meta property="og:image" content="https://mamamok.fr/logo-mamamok.png" />
+<meta property="og:url" content="https://mamamok.fr" />
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Mama Mok",
+  "image": "https://mamamok.fr/logo-mamamok.png",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "36 Rue Saint-Georges",
+    "addressLocality": "Rennes",
+    "postalCode": "35000",
+    "addressCountry": "FR"
+  },
+  "telephone": "+33223203564",
+  "email": "mamamokrestaurant@gmail.com",
+  "url": "https://mamamok.fr",
+  "servesCuisine": ["Bistronomique"],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "12:00",
+      "closes": "14:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "19:30",
+      "closes": "22:30"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+</body>
 </html>
