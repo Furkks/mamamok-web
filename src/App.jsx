@@ -94,7 +94,7 @@ const TEAM = [
 ];
 const FAQ = [
   { q: "Le restaurant est-il accessible PMR ?",   a: "Oui, salle de plain-pied. Contactez-nous pour tout besoin spécifique." },
-  { q: "Comment réserver ?",                      a: "Via le bouton Réserver (Zenchef) ou par téléphone. Pour les groupes de plus de 10 personnes, contactez-nous directement." },
+  { q: "Comment réserver ?",                      a: "Via le bouton Réserver (Zenchef) ou par téléphone. Pour les groupes de plus de 8 personnes, contactez-nous directement par téléphone." },
   { q: "Y a-t-il des options végétariennes ?",    a: "Oui, chaque entrée et chaque plat dispose d'une option végétarienne, identifiée sur la carte." },
   { q: "Quels modes de paiement acceptez-vous ?", a: "CB, Visa, Mastercard, American Express, espèces et carte ticket restaurant (carte uniquement, pas le ticket papier)." },
 ];
