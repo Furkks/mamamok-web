@@ -459,7 +459,7 @@ export default function App() {
                 <p style={{ fontFamily: "Georgia, serif", fontSize: "clamp(16px, 2.5vw, 22px)", fontStyle: "italic", color: CR, lineHeight: 1.55, margin: "0 0 14px" }}>
                   "L'élixir n'est pas un plus. C'est un activateur sensoriel. Un rituel. Un élément de surprise maîtrisée."
                 </p>
-                <cite style={{ color: "rgba(240,234,216,0.4)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.12em", fontStyle: "normal" }}>— Direction Artistique, Mama Mok</cite>
+                <cite style={{ color: "rgba(240,234,216,0.4)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.12em", fontStyle: "normal" }}>— Direction Artistique, Mamamok</cite>
               </blockquote>
             </div>
           </div>
