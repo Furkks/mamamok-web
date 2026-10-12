@@ -77,7 +77,7 @@ const CAROUSEL_SLIDES = [
   
   { img: "/TEST1.png",      label: "La cuisine du chef",             },
   { img: "/TEST2.png",      label: "L'art de la table",           },
-  { img: "/TEST3.png",      label: "La carte Mamamok",              },
+  { img: "/test3.png",      label: "La carte Mamamok",              },
   
 ];
 
