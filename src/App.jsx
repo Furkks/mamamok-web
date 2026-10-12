@@ -74,7 +74,7 @@ const IMG = {
 };
 
 const CAROUSEL_SLIDES = [
-  { img: "/plat-elexir.png", label: "L'Élixir en action" },
+  { img: "/Photo1.JPG", label: "L'Élixir en action" },
   { img: "/salle.png",       label: "L'ambiance" },
   { img: "/cok.png",         label: "L'ambiance" },
   { img: IMG.drinks,         label: "Carte des vins" },
