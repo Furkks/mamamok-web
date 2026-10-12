@@ -74,10 +74,7 @@ const IMG = {
 };
 
 const CAROUSEL_SLIDES = [
-  { img: "/plat-elexir.png", label: "L'Élixir en action",         pos: "center center" },
-  { img: "/salle.png",       label: "L'ambiance",                  pos: "center 30%"   },
-  { img: "/cok.png",         label: "L'ambiance",                  pos: "center center" },
-  { img: IMG.drinks,         label: "Carte des vins",              pos: "center center" },
+  
   { img: "/Photo1.JPG",      label: "La cuisine du chef",          pos: "center 20%"   },
   { img: "/Photo2.JPG",      label: "L'art de la table",           pos: "center center" },
   { img: "/Photo3.JPG",      label: "La carte Mamamok",            pos: "center 25%"   },
