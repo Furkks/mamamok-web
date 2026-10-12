@@ -75,9 +75,9 @@ const IMG = {
 
 const CAROUSEL_SLIDES = [
   { img: "/Photo1.JPG", label: "L'Élixir en action" },
-  { img: "/salle.png",       label: "L'ambiance" },
-  { img: "/cok.png",         label: "L'ambiance" },
-  { img: IMG.drinks,         label: "Carte des vins" },
+  { img: "/Photo1.JPG",       label: "L'ambiance" },
+  { img: "/Photo1.JPG",         label: "L'ambiance" },
+  { img: "/Photo1.JPG",         label: "Carte des vins" },
 ];
 
 const MENU_IMG_URL_DEFAULT = { midi: null, soir: null };
