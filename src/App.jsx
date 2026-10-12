@@ -399,7 +399,7 @@ export default function App() {
             {["midi", "soir"].map(s => (
               <button key={s} onClick={() => setService(s)}
                 style={{ padding: "10px 32px", fontWeight: 700, fontSize: 11, letterSpacing: "0.12em", textTransform: "uppercase", cursor: "pointer", border: "none", background: service === s ? (s === "soir" ? "#0d1109" : G) : "transparent", color: service === s ? CR : T.textMuted, fontFamily: "inherit", transition: "all 0.3s" }}>
-                {s === "midi" ? "Midi" : "Soir"}
+                {s === "midi" ? "La Formule du Midi" : "Soir & Weekend"}
               </button>
             ))}
           </div>
