@@ -78,10 +78,10 @@ const CAROUSEL_SLIDES = [
   { img: "/salle.png",       label: "L'ambiance",                  pos: "center 30%"   },
   { img: "/cok.png",         label: "L'ambiance",                  pos: "center center" },
   { img: IMG.drinks,         label: "Carte des vins",              pos: "center center" },
-  { img: "/photo1.jpg",      label: "La cuisine du chef",          pos: "center 20%"   },
-  { img: "/photo2.jpg",      label: "L'art de la table",           pos: "center center" },
-  { img: "/photo3.jpg",      label: "La carte Mamamok",            pos: "center 25%"   },
-  { img: "/photo4.jpg",      label: "Notre sélection de vins",     pos: "center 40%"   },
+  { img: "/photo1.JPG",      label: "La cuisine du chef",          pos: "center 20%"   },
+  { img: "/photo2.JPG",      label: "L'art de la table",           pos: "center center" },
+  { img: "/photo3.JPG",      label: "La carte Mamamok",            pos: "center 25%"   },
+  { img: "/photo4.JPG",      label: "Notre sélection de vins",     pos: "center 40%"   },
 ];
 
 const MENU_IMG_URL_DEFAULT = { midi: null, soir: null };
