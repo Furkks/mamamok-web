@@ -75,10 +75,10 @@ const IMG = {
 
 const CAROUSEL_SLIDES = [
   
-  { img: "/Photo1.JPG",      label: "La cuisine du chef",          pos: "center 20%"   },
-  { img: "/Photo2.JPG",      label: "L'art de la table",           pos: "center center" },
-  { img: "/Photo3.JPG",      label: "La carte Mamamok",            pos: "center 25%"   },
-  { img: "/Photo4.JPG",      label: "Notre sélection de vins",     pos: "center 40%"   },
+  { img: "/TEST1.png",      label: "La cuisine du chef",             },
+  { img: "/TEST2.png",      label: "L'art de la table",           },
+  { img: "/TEST3.png",      label: "La carte Mamamok",              },
+  
 ];
 
 const MENU_IMG_URL_DEFAULT = { midi: null, soir: null };
