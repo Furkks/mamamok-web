@@ -351,7 +351,7 @@ export default function App() {
             </div>
           </div>
           <div className="hero-photo" style={{ flex: 1, overflow: "hidden", position: "relative" }}>
-            <img src={IMG.hero} alt="Salle du restaurant Mama Mok, 12 rue de la Psalette, Rennes" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
+            <img src={IMG.hero} alt="Salle du restaurant Mama Mok, 36 rue Saint-Georges, Rennes" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center center" }} />
           </div>
         </div>
       </section>
